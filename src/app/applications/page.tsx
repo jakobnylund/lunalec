@@ -5,6 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeContext";
 
 const applications = [
   {
@@ -30,6 +31,8 @@ const applications = [
 ];
 
 export default function ApplicationsPage() {
+  const { isLight } = useTheme();
+
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
@@ -43,7 +46,9 @@ export default function ApplicationsPage() {
             className="object-cover"
           />
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          {!isLight && (
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          )}
         </div>
         <div className="px-6 lg:px-16 py-24 relative z-10">
           <FadeIn>
@@ -259,11 +264,6 @@ export default function ApplicationsPage() {
             <FadeIn>
               <p className="tech-label mb-2">Custom Solutions</p>
               <p className="section-title mb-8">Your Vision</p>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="text-3xl md:text-4xl text-white mb-8">
-                Your Application Here
-              </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-md">

@@ -314,6 +314,7 @@ input:focus, textarea:focus, select:focus {
   color: var(--text-primary);
 }
 
+
 .light-mode .text-\[\#b0b0b0\] {
   color: var(--text-secondary);
 }
@@ -412,13 +413,22 @@ section.group:hover .border-t {
   border-color: rgba(255,255,255,0.25);
 }
 
-/* Hover shadows - blue glow for light mode */
+/* Disable all hover effects on cells/cards in light mode */
+.light-mode [class*="hover:bg-white"]:hover {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
 .light-mode [class*="hover:shadow-\[inset"]:hover {
-  box-shadow:
-    inset 0 0 60px rgba(0,0,0,0.03),
-    inset 0 0 120px color-mix(in srgb, var(--accent) 12%, transparent),
-    0 0 30px color-mix(in srgb, var(--accent) 20%, transparent),
-    0 0 60px color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  box-shadow: none !important;
+}
+
+.light-mode [class*="cursor-pointer"] {
+  cursor: default !important;
+}
+
+.light-mode .group\/card:hover * {
+  color: inherit !important;
 }
 
 /* Logo inversion for light mode */
@@ -456,6 +466,32 @@ section.group:hover .border-t {
 /* Header background */
 .light-mode header {
   background-color: rgba(248, 250, 255, 0.95) !important;
+}
+
+/* Menu hover in light mode - accent color background, no glow */
+.light-mode header a[class*="hover:bg-white"]:hover {
+  background-color: var(--accent) !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+
+.light-mode header a[class*="hover:bg-white"]:hover span,
+.light-mode header a[class*="hover:bg-white"]:hover .mono {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.light-mode header a[class*="hover:bg-white"]:hover span:last-child {
+  color: white !important;
+}
+
+/* Logo hover in light mode */
+.light-mode header a.group\/logo:hover {
+  background-color: var(--accent) !important;
+  box-shadow: none !important;
+}
+
+.light-mode header a.group\/logo:hover img {
+  filter: none !important;
 }
 
 /* Link hover states */

@@ -5,8 +5,11 @@ import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Home() {
+  const { isLight } = useTheme();
+
   return (
     <div className="bg-[#050505]">
       {/* Hero - doesn't need InViewSection as it has unique hero hover behavior */}
@@ -14,14 +17,16 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/header-hand.jpg"
+            src={isLight ? "/header-light.jpg" : "/header-hand.jpg"}
             alt="LEC light technology"
             fill
             className="object-cover"
             priority
           />
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          {!isLight && (
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          )}
         </div>
 
         {/* Content */}

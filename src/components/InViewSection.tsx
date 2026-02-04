@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState, ReactNode } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 interface InViewSectionProps {
   children: ReactNode;
@@ -28,6 +29,7 @@ export default function InViewSection({
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  const { isLight } = useTheme();
 
   useEffect(() => {
     setHasMounted(true);
@@ -52,6 +54,15 @@ export default function InViewSection({
         <div className="relative z-10">
           {children}
         </div>
+      </section>
+    );
+  }
+
+  // Light mode: static sections without hover effects
+  if (isLight) {
+    return (
+      <section className={className}>
+        {children}
       </section>
     );
   }

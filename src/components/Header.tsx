@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import LightSwitch from "./LightSwitch";
 
 const navigation = [
   { name: "Home", href: "/", index: "01" },
@@ -10,6 +11,7 @@ const navigation = [
   { name: "Applications", href: "/applications", index: "03" },
   { name: "Partners", href: "/partners", index: "04" },
   { name: "About", href: "/about", index: "05" },
+  { name: "Contact", href: "/contact", index: "06" },
 ];
 
 export default function Header() {
@@ -45,13 +47,10 @@ export default function Header() {
           {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Contact CTA */}
-          <Link
-            href="/contact"
-            className="flex items-center justify-center px-8 lg:px-12 border-l border-[#1a1a1a] text-[#253ff6] hover:bg-white hover:border-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_var(--accent)] transition-all duration-300"
-          >
-            <span className="text-base">Contact</span>
-          </Link>
+          {/* Light Switch */}
+          <div className="flex items-center px-6 border-l border-[#1a1a1a]">
+            <LightSwitch />
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -90,13 +89,10 @@ export default function Header() {
                 <span className="text-base">{item.name}</span>
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="col-span-2 px-6 py-6 text-[#253ff6] border-b border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6)] transition-all duration-300 flex items-center justify-center"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="text-base">Contact</span>
-            </Link>
+            {/* Light Switch */}
+            <div className="col-span-2 px-6 py-6 border-b border-[#1a1a1a] flex items-center justify-center">
+              <LightSwitch />
+            </div>
           </div>
         </div>
       )}

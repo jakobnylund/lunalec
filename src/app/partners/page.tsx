@@ -5,6 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeContext";
 
 const partnershipModels = [
   {
@@ -43,6 +44,8 @@ const benefits = [
 ];
 
 export default function PartnersPage() {
+  const { isLight } = useTheme();
+
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
@@ -56,7 +59,9 @@ export default function PartnersPage() {
             className="object-cover"
           />
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          {!isLight && (
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          )}
         </div>
         <div className="px-6 lg:px-16 py-24 relative z-10">
           <FadeIn>

@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeContext";
 
 const milestones = [
   { year: "2008", title: "Research Begins", desc: "Foundational LEC research at Umeå University" },
@@ -21,6 +22,8 @@ const values = [
 ];
 
 export default function AboutPage() {
+  const { isLight } = useTheme();
+
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
@@ -37,7 +40,9 @@ export default function AboutPage() {
           />
         </div>
         {/* Gradient overlay for text readability */}
-        <div className="absolute inset-[-50%] bg-gradient-to-r from-[#050505]/80 via-[#050505]/40 to-transparent z-0" />
+        {!isLight && (
+          <div className="absolute inset-[-50%] bg-gradient-to-r from-[#050505]/80 via-[#050505]/40 to-transparent z-0" />
+        )}
 
         {/* Content */}
         <div className="flex-1 flex items-center relative z-10">

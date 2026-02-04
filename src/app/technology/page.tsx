@@ -5,8 +5,11 @@ import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function TechnologyPage() {
+  const { isLight } = useTheme();
+
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
@@ -14,13 +17,16 @@ export default function TechnologyPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/sheet.jpg"
+            src={isLight ? "/sheet-light.jpg" : "/sheet.jpg"}
             alt=""
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          {/* Gradient overlay for text readability */}
+          {!isLight && (
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+          )}
         </div>
 
         <div className="relative z-10">
@@ -30,8 +36,8 @@ export default function TechnologyPage() {
               <p className="tech-label mb-8">Understanding LEC</p>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-white mb-8">
-                Light-emitting
+              <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight mb-8">
+                <span style={{ color: 'white' }}>Light-emitting</span>
                 <br />
                 <span className="text-[#253ff6]">Electrochemical Cells</span>
               </h1>
@@ -251,8 +257,8 @@ export default function TechnologyPage() {
                 desc: "Compatible with paper and biodegradable substrates for end-of-life processing.",
               },
             ].map((item, i) => (
-              <FadeIn key={item.title} delay={i * 0.1}>
-                <div className={`group/card px-6 py-12 border-b ${i > 0 ? "md:border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+              <FadeIn key={item.title} delay={i * 0.1} className="h-full">
+                <div className={`group/card px-6 py-12 border-b h-full ${i > 0 ? "md:border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
                   <p className="text-white mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{item.title}</p>
                   <p className="text-base text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{item.desc}</p>
                 </div>
