@@ -93,7 +93,7 @@ export default function ApplicationsPage() {
                 Lumifoil integrates seamlessly into card form factors. Visual authentication, balance indicators, promotional messaging — powered wirelessly via NFC.
               </p>
             </FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
               {["Visual authentication", "Balance display", "Promotional animations", "NFC-powered — no battery needed"].map((feature, i) => (
                 <FadeIn key={feature} delay={0.1 + i * 0.05}>
                   <div className="border-l border-[#253ff6] pl-4">
@@ -132,7 +132,7 @@ export default function ApplicationsPage() {
                 Lumifoil transforms packaging into interactive brand experiences. Light-up logos, freshness indicators, Authentic Light™ anti-counterfeiting — all in a label-thin format.
               </p>
             </FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
               {["Brand differentiation", "Freshness indicators", "Authentic Light™ anti-counterfeiting", "Interactive unboxing"].map((feature, i) => (
                 <FadeIn key={feature} delay={0.1 + i * 0.05}>
                   <div className="border-l border-[#253ff6] pl-4">
@@ -212,7 +212,7 @@ export default function ApplicationsPage() {
                 Our patented technology embeds hidden and dynamic light patterns into Lumifoil products — patterns that only appear under activation and require our proprietary technology to produce. No apps. No scanners. Just visible proof of authenticity.
               </p>
             </FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
               {["Hidden patterns revealed only under activation", "Dynamic light sequences unique to each product", "Impossible to counterfeit without LunaLEC technology", "Visual verification — no app needed"].map((feature, i) => (
                 <FadeIn key={feature} delay={0.15 + i * 0.05}>
                   <div className="border-l border-[#253ff6] pl-4">
@@ -249,10 +249,10 @@ export default function ApplicationsPage() {
           </div>
 
           {/* Grid - 2x2 layout */}
-          <div className="lg:col-span-2 grid grid-cols-2 content-start">
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 content-start">
             {applications.map((app, i) => (
               <FadeIn key={app.title} delay={i * 0.05}>
-                <div className={`group/card px-6 py-10 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                <div className={`group/card px-6 py-10 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "sm:border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
                   <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.title}</p>
                   <p className="text-base text-[#b0b0b0] mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>
                   <p className="text-sm text-[#808080] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{app.details}</p>

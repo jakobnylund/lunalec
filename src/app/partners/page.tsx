@@ -144,7 +144,7 @@ export default function PartnersPage() {
               { step: "04", title: "Development", desc: "Collaborative execution" },
             ].map((item, i) => (
               <FadeIn key={item.step} delay={i * 0.1} className="h-full">
-                <div className={`group/card px-6 py-12 border-b ${i > 0 ? "border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full`}>
+                <div className={`group/card px-6 py-12 border-b ${i % 2 !== 0 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} ${i % 4 === 0 && i % 2 !== 0 ? "md:border-l-0" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full`}>
                   <p className="mono text-2xl text-[#253ff6] mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">{item.step}</p>
                   <p className="text-white text-base mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{item.title}</p>
                   <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{item.desc}</p>
