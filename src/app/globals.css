@@ -46,7 +46,7 @@
   --background: #050505;
   --surface: #0a0a0a;
   --surface-elevated: #111111;
-  --accent: #253ff6;
+  --accent: #4c2ee5;
   --accent-purple: #9B7BE5;
   --accent-pink: #C57BDB;
   --text-primary: #ffffff;
@@ -580,11 +580,11 @@ section.group:hover .border-t {
   color: #050505 !important;
 }
 
-/* For dark background hovers, title turns blue */
+/* For dark background hovers, title turns accent color */
 .group:hover .group-hover\:text-\[\#253ff6\],
 .group\/spec:hover .group-hover\/spec\:text-\[\#253ff6\],
 .group\/sustain:hover .group-hover\/sustain\:text-\[\#253ff6\] {
-  color: #253ff6 !important;
+  color: var(--accent) !important;
 }
 
 /* Ensure white text stays visible on dark hovers when section-in-view is active */

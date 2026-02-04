@@ -2,9 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 
+// Default color: #4c2ee5 (hue ~250 degrees = 69.4%)
+const DEFAULT_POSITION = 69.4;
+const DEFAULT_COLOR = "#4c2ee5";
+
 export default function ColorPicker() {
-  const [position, setPosition] = useState(0); // 0-100 percentage
+  const [position, setPosition] = useState<number | null>(null); // null until initialized
   const [isDragging, setIsDragging] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
 
   // Convert position to HSL color (full spectrum)
@@ -40,25 +45,32 @@ export default function ColorPicker() {
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   };
 
-  // Apply color to CSS custom property
+  // Apply color to CSS custom property (only after initialization)
   useEffect(() => {
+    if (position === null || !isInitialized) return;
+
     const color = getHexFromPosition(position);
     document.documentElement.style.setProperty('--accent', color);
 
     // Store in localStorage
     localStorage.setItem('accentColor', color);
     localStorage.setItem('accentPosition', position.toString());
-  }, [position]);
+  }, [position, isInitialized]);
 
   // Load saved position on mount
   useEffect(() => {
     const saved = localStorage.getItem('accentPosition');
     if (saved) {
-      setPosition(parseFloat(saved));
+      const savedPosition = parseFloat(saved);
+      setPosition(savedPosition);
+      // Apply saved color immediately
+      const color = getHexFromPosition(savedPosition);
+      document.documentElement.style.setProperty('--accent', color);
     } else {
-      // Default to blue position (~230 degrees = 64%)
-      setPosition(64);
+      // Use default position, CSS already has default color
+      setPosition(DEFAULT_POSITION);
     }
+    setIsInitialized(true);
   }, []);
 
   const updatePosition = (clientX: number) => {
@@ -112,7 +124,7 @@ export default function ColorPicker() {
     };
   }, [isDragging]);
 
-  const currentColor = getColorFromPosition(position);
+  const currentColor = getColorFromPosition(position ?? DEFAULT_POSITION);
 
   return (
     <div className="bg-[#050505]">
@@ -145,11 +157,47 @@ export default function ColorPicker() {
         <div
           className="absolute top-0 bottom-0 w-1 bg-white pointer-events-none"
           style={{
-            left: `${position}%`,
+            left: `${position ?? DEFAULT_POSITION}%`,
             transform: 'translateX(-50%)',
             boxShadow: `0 0 20px ${currentColor}, 0 0 40px ${currentColor}, 0 0 60px ${currentColor}`,
           }}
         />
+      </div>
+
+      {/* Content section */}
+      <div className="px-6 lg:px-16 py-12 border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <p className="tech-label mb-4">The Full Spectrum</p>
+            <h3
+              className="text-2xl mb-4 transition-colors duration-300"
+              style={{ color: currentColor }}
+            >
+              Any Color You Can Imagine
+            </h3>
+            <p className="text-[#b0b0b0] leading-relaxed">
+              LEC technology can produce light across the entire visible spectrum.
+              Red, green, blue, and everything in between—our materials can be
+              tuned to emit any wavelength you need.
+            </p>
+          </div>
+          <div>
+            <p className="tech-label mb-4">The Breakthrough</p>
+            <h3 className="text-2xl text-white mb-4">
+              White Light Changes Everything
+            </h3>
+            <p className="text-[#b0b0b0] leading-relaxed mb-4">
+              While colored light is impressive, the real breakthrough is
+              <span className="text-white font-medium"> white light</span>.
+              Achieving efficient, stable white emission from a printable source
+              unlocks applications that were previously impossible.
+            </p>
+            <p className="text-[#b0b0b0] leading-relaxed">
+              General illumination. Reading lights. Display backlights.
+              All from a surface thinner than a sheet of paper.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
