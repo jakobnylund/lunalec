@@ -39,7 +39,7 @@ export default function AboutPage() {
             />
           </div>
           {/* Gradient overlay for text readability - fades on hover to reveal map */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-[#050505]/40 transition-opacity duration-500 group-hover/hero:opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-[#050505]/70 transition-opacity duration-500 group-hover/hero:opacity-50" />
         </div>
 
         {/* Content */}
