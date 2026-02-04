@@ -27,7 +27,7 @@ export default function AboutPage() {
       <section className="min-h-[60vh] flex flex-col justify-center border-b-section relative group/hero">
         {/* Background Map */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute inset-0 grayscale brightness-[0.4] contrast-125 scale-110">
+          <div className="absolute inset-0 grayscale invert brightness-[0.4] contrast-125 scale-110">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54889.85073088441!2d20.225089!3d63.825848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c4e1b68add7f9%3A0x4034506de8c8560!2sUme%C3%A5%2C%20Sweden!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
               width="100%"
