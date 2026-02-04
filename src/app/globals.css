@@ -1,26 +1,661 @@
 @import "tailwindcss";
 
+/* Dynamic accent color overrides */
+.text-\[\#253ff6\] {
+  color: var(--accent) !important;
+}
+
+.bg-\[\#253ff6\] {
+  background-color: var(--accent) !important;
+}
+
+.border-\[\#253ff6\] {
+  border-color: var(--accent) !important;
+}
+
+.hover\:text-\[\#253ff6\]:hover {
+  color: var(--accent) !important;
+}
+
+.hover\:bg-\[\#253ff6\]:hover {
+  background-color: var(--accent) !important;
+}
+
+.group-hover\:text-\[\#253ff6\]:is(:where(.group):hover *) {
+  color: var(--accent) !important;
+}
+
+/* Custom accent utility classes */
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.bg-accent:hover {
+  background-color: white !important;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.border-accent {
+  border-color: var(--accent);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --surface: #0a0a0a;
+  --surface-elevated: #111111;
+  --accent: #253ff6;
+  --accent-purple: #9B7BE5;
+  --accent-pink: #C57BDB;
+  --text-primary: #ffffff;
+  --text-secondary: #a8a8a8;
+  --text-tertiary: #6a6a6a;
+  --border: #222222;
+  --border-subtle: #1a1a1a;
+  --foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Typography - Clean, technical but readable */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* Monospace for technical elements */
+.mono {
+  font-family: var(--font-mono), "SF Mono", Monaco, monospace;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.01em;
+}
+
+/* Grid lines - more subtle */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.grid-lines-dense {
+  background-image:
+    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Dot matrix pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--accent) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Show dot grid on section hover */
+section.group:hover .dot-grid {
+  opacity: 0.25;
+}
+
+/* Mobile: show on in-view */
+.section-in-view .dot-grid {
+  opacity: 0.2;
+}
+
+/* Border utilities */
+.border-grid {
+  border-color: var(--border);
+}
+
+/* Section dividers - thick borders for major sections */
+.border-section {
+  border-color: #2a2a2a;
+  border-width: 2px;
+}
+
+.border-t-section {
+  border-top: 2px solid #2a2a2a;
+}
+
+.border-b-section {
+  border-bottom: 2px solid #2a2a2a;
+}
+
+.border-l-section {
+  border-left: 2px solid #2a2a2a;
+}
+
+.border-r-section {
+  border-right: 2px solid #2a2a2a;
+}
+
+/* Light mode thick borders */
+.light-mode .border-section,
+.light-mode .border-t-section,
+.light-mode .border-b-section,
+.light-mode .border-l-section,
+.light-mode .border-r-section {
+  border-color: #b8c7e0;
+}
+
+/* Section index styling */
+.section-index {
+  font-family: var(--font-mono), monospace;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+}
+
+/* Accent line */
+.accent-line {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+}
+
+/* Technical label */
+.tech-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Section title - large prominent labels */
+.section-title {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Metric display */
+.metric {
+  font-family: var(--font-mono), monospace;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-feature-settings: "tnum";
+}
+
+/* Accent text gradient */
+.text-accent-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-purple) 50%, var(--accent-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Clean focus states */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+}
+
+/* Sharp scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Light mode - blue-tinted palette */
+.light-mode {
+  --background: #f8faff;
+  --surface: #eef2fb;
+  --surface-elevated: #e4eaf8;
+  --text-primary: #0a1628;
+  --text-secondary: #3d4f6f;
+  --text-tertiary: #5a6d8a;
+  --border: #c5d0e6;
+  --border-subtle: #dce4f2;
+  --foreground: #0a1628;
+}
+
+.light-mode body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Background colors */
+.light-mode .bg-\[\#050505\] {
+  background-color: var(--background);
+}
+
+.light-mode .bg-\[\#0a0a0a\] {
+  background-color: var(--surface);
+}
+
+.light-mode .bg-\[\#111\] {
+  background-color: var(--surface-elevated);
+}
+
+.light-mode .bg-\[\#151515\] {
+  background-color: #dde5f5;
+}
+
+.light-mode .bg-\[\#050505\]\/95 {
+  background-color: rgba(248, 250, 255, 0.95);
+}
+
+.light-mode .bg-\[\#050505\]\/50 {
+  background-color: rgba(248, 250, 255, 0.5);
+}
+
+/* Border colors */
+.light-mode .border-\[\#1a1a1a\] {
+  border-color: var(--border);
+}
+
+.light-mode .border-\[\#2a2a2a\] {
+  border-color: #a8b8d8;
+}
+
+/* Text colors */
+.light-mode .text-white {
+  color: var(--text-primary);
+}
+
+.light-mode .text-\[\#b0b0b0\] {
+  color: var(--text-secondary);
+}
+
+.light-mode .text-\[\#808080\] {
+  color: var(--text-tertiary);
+}
+
+.light-mode .text-\[\#555\] {
+  color: var(--text-tertiary);
+}
+
+.light-mode .text-\[\#444\] {
+  color: #4a5d7a;
+}
+
+.light-mode .text-\[\#666\] {
+  color: #5a6d8a;
+}
+
+/* Placeholder text */
+.light-mode .placeholder-\[\#555\]::placeholder {
+  color: #7a8ba8;
+}
+
+/* Hover backgrounds */
+.light-mode .hover\:bg-\[\#0a0a0a\]:hover {
+  background-color: #e4eaf8;
+}
+
+.light-mode .hover\:bg-\[\#151515\]:hover {
+  background-color: #dde5f5;
+}
+
+/* Enhanced hover glow - full power light effect on cells */
+[class*="hover:shadow-\[inset"]:hover {
+  background-color: rgba(255,255,255,0.95) !important;
+  box-shadow:
+    inset 0 0 100px rgba(255,255,255,1),
+    0 0 40px rgba(255,255,255,0.6),
+    0 0 80px color-mix(in srgb, var(--accent) 40%, transparent),
+    0 0 120px color-mix(in srgb, var(--accent) 25%, transparent) !important;
+  border-color: rgba(255,255,255,0.8) !important;
+}
+
+/* Text inside lit cells */
+[class*="hover:shadow-\[inset"]:hover p,
+[class*="hover:shadow-\[inset"]:hover span {
+  color: #050505 !important;
+}
+
+/* Exception: keep text white inside elements that turn dark on hover (like number boxes) */
+[class*="hover:shadow-\[inset"]:hover [class*="group-hover/card:bg-\[#050505\]"] span {
+  color: white !important;
+}
+
+/* Exception: keep accent-colored text in cells that turn white on hover */
+section.group:hover [class*="group-hover"][class*="bg-white"] .text-\[\#253ff6\],
+section.group:hover [class*="group-hover"][class*="bg-white"] .tech-label.text-\[\#253ff6\] {
+  color: var(--accent) !important;
+}
+
+/* Section-level hover - subtle accent highlight on entire section */
+section.group:hover {
+  background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+  box-shadow:
+    inset 0 0 100px color-mix(in srgb, var(--accent) 10%, transparent),
+    0 0 60px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+/* Left sidebar/index area gets stronger glow on section hover */
+section.group:hover .lg\:border-r {
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent) !important;
+  box-shadow:
+    inset 0 0 80px color-mix(in srgb, var(--accent) 15%, transparent) !important;
+}
+
+/* Gray text becomes white on section hover */
+section.group:hover .text-\[\#808080\],
+section.group:hover .text-\[\#b0b0b0\],
+section.group:hover .text-\[\#555\],
+section.group:hover .tech-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 0.3s ease;
+}
+
+/* Make borders more visible when section is hovered */
+section.group:hover .border-\[\#1a1a1a\] {
+  border-color: rgba(255,255,255,0.25) !important;
+}
+
+section.group:hover .border-r,
+section.group:hover .border-l,
+section.group:hover .border-b,
+section.group:hover .border-t {
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* Hover shadows - blue glow for light mode */
+.light-mode [class*="hover:shadow-\[inset"]:hover {
+  box-shadow:
+    inset 0 0 60px rgba(0,0,0,0.03),
+    inset 0 0 120px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 0 30px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 0 60px color-mix(in srgb, var(--accent) 10%, transparent) !important;
+}
+
+/* Logo inversion for light mode */
+.light-mode img[src*="lunalec-logo"] {
+  filter: invert(1);
+}
+
+/* Form elements */
+.light-mode input,
+.light-mode textarea,
+.light-mode select {
+  background-color: var(--background);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.light-mode input::placeholder,
+.light-mode textarea::placeholder {
+  color: #7a8ba8;
+}
+
+/* Scrollbar */
+.light-mode ::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.light-mode ::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: #8a9bba;
+}
+
+/* Header background */
+.light-mode header {
+  background-color: rgba(248, 250, 255, 0.95) !important;
+}
+
+/* Link hover states */
+.light-mode .hover\:text-white:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Ghost button in light mode */
+.light-mode .text-\[\#888\] {
+  color: #5a6d8a;
+}
+
+/* Secondary button in light mode */
+.light-mode .bg-\[\#1a1a1a\] {
+  background-color: #e4eaf8;
+}
+
+.light-mode .border-\[\#333\] {
+  border-color: #b8c7e0;
+}
+
+/* Mobile menu */
+.light-mode .bg-\[\#333\] {
+  background-color: #dde5f5;
+}
+
+/* Select dropdown in light mode */
+.light-mode select {
+  background-color: var(--background) !important;
+}
+
+/* Transparent inputs should have light bg in light mode */
+.light-mode .bg-transparent {
+  background-color: var(--background);
+}
+
+/* Hero gradient overlay for light mode */
+.light-mode .from-\[\#050505\] {
+  --tw-gradient-from: #f8faff;
+}
+
+.light-mode .via-\[\#050505\]\/90 {
+  --tw-gradient-via: rgba(248, 250, 255, 0.9);
+}
+
+.light-mode .to-\[\#050505\]\/40 {
+  --tw-gradient-to: rgba(248, 250, 255, 0.4);
+}
+
+/* ============================================
+   MOBILE EXPERIENCE IMPROVEMENTS
+   ============================================ */
+
+/* Touch device alternatives - disable hover effects on devices without hover capability */
+@media (hover: none) {
+  /* Disable cell-level hover glow effects */
+  [class*="hover:shadow-\[inset"]:hover {
+    background-color: inherit !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+  }
+
+  /* Disable section-level hover effects */
+  section.group:hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  section.group:hover .lg\:border-r {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Keep text colors normal on touch devices */
+  section.group:hover .text-\[\#808080\],
+  section.group:hover .text-\[\#b0b0b0\],
+  section.group:hover .text-\[\#555\],
+  section.group:hover .tech-label {
+    color: inherit !important;
+  }
+
+  section.group:hover .border-\[\#1a1a1a\] {
+    border-color: #1a1a1a !important;
+  }
+
+  /* Disable comparison table hover effects on touch */
+  .group\/comparison:hover {
+    background-color: transparent !important;
+  }
+}
+
+/* In-view glow class for mobile sections */
+.section-in-view {
+  background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+  box-shadow:
+    inset 0 0 100px color-mix(in srgb, var(--accent) 10%, transparent),
+    0 0 60px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+/* Text enhancement when section is in view on mobile */
+.section-in-view .text-\[\#808080\],
+.section-in-view .text-\[\#b0b0b0\],
+.section-in-view .text-\[\#555\],
+.section-in-view .tech-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 0.3s ease;
+}
+
+/* Left sidebar glow when section is in view */
+.section-in-view .lg\:border-r {
+  background-color: color-mix(in srgb, var(--accent) 12%, transparent) !important;
+  box-shadow: inset 0 0 80px color-mix(in srgb, var(--accent) 15%, transparent) !important;
+}
+
+/* Border enhancement when section is in view */
+.section-in-view .border-\[\#1a1a1a\] {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Spec card hover - all text turns black on white background */
+.spec-card:hover p {
+  color: #050505 !important;
+}
+
+/* For dark background hovers, title turns blue */
+.group:hover .group-hover\:text-\[\#253ff6\],
+.group\/spec:hover .group-hover\/spec\:text-\[\#253ff6\],
+.group\/sustain:hover .group-hover\/sustain\:text-\[\#253ff6\] {
+  color: #253ff6 !important;
+}
+
+/* Ensure white text stays visible on dark hovers when section-in-view is active */
+.group:hover .group-hover\:text-white {
+  color: white !important;
+}
+
+/* Light mode in-view styles */
+.light-mode .section-in-view {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent);
+  box-shadow:
+    inset 0 0 80px color-mix(in srgb, var(--accent) 8%, transparent),
+    0 0 40px color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+.light-mode .section-in-view .text-\[\#808080\],
+.light-mode .section-in-view .text-\[\#b0b0b0\],
+.light-mode .section-in-view .text-\[\#555\],
+.light-mode .section-in-view .tech-label {
+  color: var(--text-primary) !important;
+}
+
+/* ============================================
+   MOBILE TYPOGRAPHY REFINEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .tech-label {
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Reduce section padding on mobile for better content density */
+  .py-16 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .py-24 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* Ensure touch targets are at least 44px */
+  a, button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+  body {
+    font-size: 15px;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem) !important;
+  }
 }
