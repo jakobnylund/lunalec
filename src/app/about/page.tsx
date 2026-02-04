@@ -24,10 +24,27 @@ export default function AboutPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <InViewSection className="min-h-[60vh] flex flex-col justify-center border-b-section">
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left */}
-          <div className="px-6 lg:px-16 py-24">
+      <section className="min-h-[60vh] flex flex-col justify-center border-b-section relative group/hero">
+        {/* Background Map */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 grayscale brightness-[0.4] contrast-125 scale-110">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54889.85073088441!2d20.225089!3d63.825848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c4e1b68add7f9%3A0x4034506de8c8560!2sUme%C3%A5%2C%20Sweden!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: '100%', minWidth: '100%' }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          {/* Gradient overlay for text readability - fades on hover to reveal map */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-[#050505]/40 transition-opacity duration-500 group-hover/hero:opacity-60" />
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 flex items-center relative z-10">
+          <div className="px-6 lg:px-16 py-24 max-w-3xl">
             <FadeIn>
               <p className="tech-label mb-8">Company</p>
             </FadeIn>
@@ -39,39 +56,20 @@ export default function AboutPage() {
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-[#b0b0b0] text-lg max-w-md leading-relaxed">
+              <p className="text-[#b0b0b0] text-lg max-w-md leading-relaxed mb-6">
                 LunaLEC is a Swedish deep tech company transforming how the world
                 creates and uses light through printable technology.
               </p>
             </FadeIn>
-          </div>
-
-          {/* Right - Map */}
-          <div className="hidden lg:flex items-center justify-center border-l border-[#1a1a1a] relative overflow-hidden">
-            {/* Google Maps embed with grayscale treatment */}
-            <div className="absolute inset-0 grayscale brightness-[0.3] contrast-125">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54889.85073088441!2d20.225089!3d63.825848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c4e1b68add7f9%3A0x4034506de8c8560!2sUme%C3%A5%2C%20Sweden!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '100%' }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="scale-110"
-              />
-            </div>
-            {/* Overlay for additional darkening */}
-            <div className="absolute inset-0 bg-[#050505]/40" />
             <FadeIn delay={0.3}>
-              <div className="relative z-10 text-center">
-                <p className="text-white text-3xl mb-2">Umeå, Sweden</p>
-                <p className="text-[#808080] text-sm">63.8258° N, 20.2630° E</p>
+              <div className="flex items-center gap-4 text-[#808080]">
+                <span className="text-white">Umeå, Sweden</span>
+                <span className="text-sm">63.8258° N, 20.2630° E</span>
               </div>
             </FadeIn>
           </div>
         </div>
-      </InViewSection>
+      </section>
 
       {/* Origin */}
       <InViewSection className="border-b-section">
