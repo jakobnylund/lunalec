@@ -267,7 +267,7 @@ export default function ContactPage() {
             {[
               {
                 q: "What is the typical timeline for a partnership project?",
-                a: "A typical joint development project runs 6-18 months from initial discussions to production-ready solutions.",
+                a: "Timelines vary based on project scope and complexity. We'll give you a realistic estimate after understanding your specific needs.",
               },
               {
                 q: "Do you work with startups?",

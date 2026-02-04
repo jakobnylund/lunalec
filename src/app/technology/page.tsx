@@ -81,10 +81,15 @@ export default function TechnologyPage() {
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <p className="text-[#b0b0b0] text-lg leading-relaxed max-w-2xl">
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
                 This unique mechanism allows LECs to be fabricated with air-stable
                 electrodes without charge injection layers—dramatically simplifying
                 device architecture and manufacturing.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.4}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed max-w-2xl">
+                This is the foundation of Lumifoil — our commercial product line that brings LEC technology to market.
               </p>
             </FadeIn>
           </div>
@@ -127,7 +132,7 @@ export default function TechnologyPage() {
                 { label: "Substrate →", led: "Rigid PCB", oled: "Glass/plastic", lec: "Paper, plastic, fabric" },
                 { label: "Voltage →", led: "2-4V DC", oled: "3-10V DC", lec: "3-5V DC/AC" },
                 { label: "Material Cost →", led: "Low", oled: "High", lec: "Very Low" },
-                { label: "Rare Earth →", led: "Yes", oled: "Some", lec: "No" },
+                { label: "Rare Earth →", led: "Yes", oled: "Some", lec: "None" },
                 { label: "Encapsulation →", led: "Moderate", oled: "Critical", lec: "Minimal" },
               ].map((row, i) => (
                 <FadeIn key={row.label} delay={i * 0.05}>
@@ -156,7 +161,7 @@ export default function TechnologyPage() {
                 { label: "Substrate", led: "Rigid PCB", oled: "Glass/plastic", lec: "Paper, plastic, fabric" },
                 { label: "Voltage", led: "2-4V DC", oled: "3-10V DC", lec: "3-5V DC/AC" },
                 { label: "Material Cost", led: "Low", oled: "High", lec: "Very Low" },
-                { label: "Rare Earth", led: "Yes", oled: "Some", lec: "No" },
+                { label: "Rare Earth", led: "Yes", oled: "Some", lec: "None" },
                 { label: "Encapsulation", led: "Moderate", oled: "Critical", lec: "Minimal" },
               ].map((row, i) => (
                 <FadeIn key={row.label} delay={i * 0.05}>

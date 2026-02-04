@@ -8,34 +8,24 @@ import Image from "next/image";
 
 const applications = [
   {
-    title: "Smart Cards",
-    desc: "Authentication & display",
-    details: "Visual feedback for authentication, balance indicators, promotional messaging",
-  },
-  {
-    title: "Packaging",
-    desc: "Brand differentiation",
-    details: "Light-up logos, freshness indicators, anti-counterfeiting features",
-  },
-  {
     title: "Labels & Tags",
-    desc: "Status indicators",
-    details: "Logistics tracking, product authentication, temperature alerts",
+    desc: "Lumifoil status indicators",
+    details: "Lumifoil's flexibility makes it ideal for labels and tags. Status indicators, authentication marks, temperature alerts that light up when it matters.",
   },
   {
     title: "Signage",
-    desc: "Flexible displays",
+    desc: "Lumifoil flexible displays",
     details: "Thin illuminated signs for retail, events, and wayfinding",
   },
   {
     title: "Architecture",
-    desc: "Ambient lighting",
+    desc: "Lumifoil ambient lighting",
     details: "Wallpapers, ceiling tiles, decorative surfaces that emit light",
   },
   {
-    title: "Medical",
-    desc: "Phototherapy devices",
-    details: "Flexible light sources for wound healing and diagnostics",
+    title: "Wearables",
+    desc: "Lumifoil integrated displays",
+    details: "Flexible light elements for clothing, accessories, and wearable tech",
   },
 ];
 
@@ -43,8 +33,19 @@ export default function ApplicationsPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <InViewSection className="min-h-[60vh] flex flex-col justify-center border-b-section">
-        <div className="px-6 lg:px-16 py-24">
+      <section className="min-h-[60vh] flex flex-col justify-center border-b-section relative group/hero">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <Image
+            src="/triangle.jpg"
+            alt=""
+            fill
+            className="object-cover"
+          />
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+        </div>
+        <div className="px-6 lg:px-16 py-24 relative z-10">
           <FadeIn>
             <p className="tech-label mb-8">Use Cases</p>
           </FadeIn>
@@ -57,41 +58,15 @@ export default function ApplicationsPage() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-[#b0b0b0] text-lg max-w-xl leading-relaxed">
-              LEC technology enables entirely new product categories. From smart
-              cards to medical devices, discover how printable light is
-              transforming industries.
+              Lumifoil enables entirely new product categories. From smart
+              cards to medical devices, discover how printable light creates
+              possibilities that didn&apos;t exist before.
             </p>
           </FadeIn>
         </div>
-      </InViewSection>
+      </section>
 
-      {/* Applications Grid */}
-      <InViewSection className="border-b-section">
-        <div className="grid grid-cols-1 lg:grid-cols-3">
-          {/* Index */}
-          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
-            <FadeIn>
-              <p className="tech-label mb-2">Industries</p>
-              <p className="section-title">Application Areas</p>
-            </FadeIn>
-          </div>
-
-          {/* Grid - 2x3 layout */}
-          <div className="lg:col-span-2 grid grid-cols-2 content-start">
-            {applications.map((app, i) => (
-              <FadeIn key={app.title} delay={i * 0.05}>
-                <div className={`group/card px-6 py-10 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
-                  <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.title}</p>
-                  <p className="text-base text-[#b0b0b0] mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>
-                  <p className="text-sm text-[#808080] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{app.details}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </InViewSection>
-
-      {/* Detailed Sections */}
+      {/* Smart Cards */}
       <InViewSection className="border-b-section bg-[#0a0a0a]" hoverClassName="group group/smartcards">
         {/* Background image - shows on hover at 30% */}
         <div className="absolute inset-0 opacity-0 group-hover/smartcards:opacity-30 transition-opacity duration-500 z-0">
@@ -101,7 +76,7 @@ export default function ApplicationsPage() {
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
-              <p className="tech-label mb-2">Authentication & Display</p>
+              <p className="tech-label mb-2">Lumifoil Authentication & Display</p>
               <p className="section-title">Smart Cards</p>
             </FadeIn>
           </div>
@@ -110,11 +85,16 @@ export default function ApplicationsPage() {
           <div className="lg:col-span-2 px-6 lg:px-16 py-16 lg:py-24">
             <FadeIn>
               <h2 className="text-3xl md:text-4xl text-white mb-8 max-w-2xl">
-                Integrate dynamic light displays into payment cards, access badges, and loyalty cards.
+                Lumifoil integrates dynamic light displays into payment cards, access badges, and loyalty cards.
               </h2>
             </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-8 max-w-2xl">
+                Lumifoil integrates seamlessly into card form factors. Visual authentication, balance indicators, promotional messaging — powered wirelessly via NFC.
+              </p>
+            </FadeIn>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              {["Visual authentication", "Balance display", "Promotional animations", "Ultra-thin integration"].map((feature, i) => (
+              {["Visual authentication", "Balance display", "Promotional animations", "NFC-powered — no battery needed"].map((feature, i) => (
                 <FadeIn key={feature} delay={0.1 + i * 0.05}>
                   <div className="border-l border-[#253ff6] pl-4">
                     <p className="text-base text-[#b0b0b0]">{feature}</p>
@@ -135,7 +115,7 @@ export default function ApplicationsPage() {
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
-              <p className="tech-label mb-2">Brand Differentiation</p>
+              <p className="tech-label mb-2">Lumifoil Brand Differentiation</p>
               <p className="section-title">Packaging</p>
             </FadeIn>
           </div>
@@ -144,11 +124,16 @@ export default function ApplicationsPage() {
           <div className="lg:col-span-2 px-6 lg:px-16 py-16 lg:py-24">
             <FadeIn>
               <h2 className="text-3xl md:text-4xl text-white mb-8 max-w-2xl">
-                Transform product packaging into an interactive experience with light-up elements.
+                Lumifoil transforms product packaging into an interactive experience with light-up elements.
               </h2>
             </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-8 max-w-2xl">
+                Lumifoil transforms packaging into interactive brand experiences. Light-up logos, freshness indicators, Authentic Light™ anti-counterfeiting — all in a label-thin format.
+              </p>
+            </FadeIn>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              {["Brand differentiation", "Freshness indicators", "Anti-counterfeiting", "Interactive unboxing"].map((feature, i) => (
+              {["Brand differentiation", "Freshness indicators", "Authentic Light™ anti-counterfeiting", "Interactive unboxing"].map((feature, i) => (
                 <FadeIn key={feature} delay={0.1 + i * 0.05}>
                   <div className="border-l border-[#253ff6] pl-4">
                     <p className="text-base text-[#b0b0b0]">{feature}</p>
@@ -169,7 +154,7 @@ export default function ApplicationsPage() {
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
-              <p className="tech-label mb-2">Phototherapy & Diagnostics</p>
+              <p className="tech-label mb-2">Lumifoil Phototherapy</p>
               <p className="section-title">Medical</p>
             </FadeIn>
           </div>
@@ -178,8 +163,13 @@ export default function ApplicationsPage() {
           <div className="lg:col-span-2 px-6 lg:px-16 py-16 lg:py-24">
             <FadeIn>
               <h2 className="text-3xl md:text-4xl text-white mb-8 max-w-2xl">
-                Flexible, biocompatible light sources for phototherapy, wound healing, and diagnostics.
+                Lumifoil enables flexible, biocompatible light sources for phototherapy, wound healing, and diagnostics.
               </h2>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-8 max-w-2xl">
+                Lumifoil&apos;s biocompatible construction enables new phototherapy applications. Flexible patches for wound healing, diagnostics, and wearable light therapy.
+              </p>
             </FadeIn>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
               {["Phototherapy patches", "Wound healing", "Diagnostic indicators", "Wearable integration"].map((feature, i) => (
@@ -194,8 +184,87 @@ export default function ApplicationsPage() {
         </div>
       </InViewSection>
 
+      {/* Authentic Light - Anti-Counterfeiting */}
+      <InViewSection className="border-b-section" hoverClassName="group group/authentic">
+        <div className="grid grid-cols-1 lg:grid-cols-3 relative z-10">
+          {/* Index */}
+          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+            <FadeIn>
+              <p className="tech-label mb-2">Security & Authentication</p>
+              <p className="section-title">Authentic Light™</p>
+            </FadeIn>
+          </div>
+
+          {/* Content */}
+          <div className="lg:col-span-2 px-6 lg:px-16 py-16 lg:py-24">
+            <FadeIn>
+              <h2 className="text-3xl md:text-4xl text-white mb-8 max-w-2xl">
+                Security features that can&apos;t be copied.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
+                Counterfeiting is a global problem costing brands billions. Authentic Light gives you a powerful new tool: light-based authentication that&apos;s impossible to replicate.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-8 max-w-2xl">
+                Our patented technology embeds hidden and dynamic light patterns into Lumifoil products — patterns that only appear under activation and require our proprietary technology to produce. No apps. No scanners. Just visible proof of authenticity.
+              </p>
+            </FadeIn>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+              {["Hidden patterns revealed only under activation", "Dynamic light sequences unique to each product", "Impossible to counterfeit without LunaLEC technology", "Visual verification — no app needed"].map((feature, i) => (
+                <FadeIn key={feature} delay={0.15 + i * 0.05}>
+                  <div className="border-l border-[#253ff6] pl-4">
+                    <p className="text-base text-[#b0b0b0]">{feature}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <FadeIn delay={0.35}>
+              <div className="mt-12">
+                <p className="tech-label mb-4">Industries</p>
+                <div className="flex flex-wrap gap-3">
+                  {["Luxury goods & fashion", "Pharmaceuticals", "Electronics", "Spirits & premium beverages", "Documents & certificates"].map((industry) => (
+                    <span key={industry} className="text-sm text-[#808080] border border-[#1a1a1a] px-3 py-1">
+                      {industry}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </InViewSection>
+
+      {/* Applications Grid */}
+      <InViewSection className="border-b-section bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {/* Index */}
+          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+            <FadeIn>
+              <p className="tech-label mb-2">More Industries</p>
+              <p className="section-title">Application Areas</p>
+            </FadeIn>
+          </div>
+
+          {/* Grid - 2x2 layout */}
+          <div className="lg:col-span-2 grid grid-cols-2 content-start">
+            {applications.map((app, i) => (
+              <FadeIn key={app.title} delay={i * 0.05}>
+                <div className={`group/card px-6 py-10 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                  <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.title}</p>
+                  <p className="text-base text-[#b0b0b0] mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>
+                  <p className="text-sm text-[#808080] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{app.details}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </InViewSection>
+
       {/* Custom Application */}
-      <InViewSection className="border-b-section">
+      <InViewSection className="border-b-section bg-[#0a0a0a]">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left */}
           <div className="px-6 lg:px-16 py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">

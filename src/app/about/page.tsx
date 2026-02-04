@@ -52,7 +52,6 @@ export default function AboutPage() {
             <FadeIn delay={0.3}>
               <div className="relative z-10 text-center">
                 <p className="text-white text-3xl mb-2">Umeå, Sweden</p>
-                <p className="text-[#808080] text-base">Deep tech from the Arctic</p>
               </div>
             </FadeIn>
           </div>
@@ -79,8 +78,8 @@ export default function AboutPage() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
-                LunaLEC emerged from over a decade of Light-emitting Electrochemical
-                Cell research. In 2014, recognizing the commercial potential, we
+                LunaLEC emerged from nearly two decades of Light-emitting Electrochemical
+                Cell research at Umeå University. In 2014, recognizing the commercial potential, we
                 founded LunaLEC to bridge academic research and real-world applications.
               </p>
             </FadeIn>

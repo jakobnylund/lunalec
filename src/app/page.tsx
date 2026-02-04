@@ -38,6 +38,11 @@ export default function Home() {
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
+              <p className="text-[#b0b0b0] text-lg max-w-md leading-relaxed mb-4">
+                Introducing <span className="text-white font-medium">Lumifoil</span>
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.25}>
               <p className="text-[#b0b0b0] text-lg max-w-md leading-relaxed mb-10">
                 We develop printable light sources that can be integrated into any surface.
                 Thin, flexible, sustainable.
@@ -109,10 +114,15 @@ export default function Home() {
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-10 max-w-2xl">
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
                 This opens possibilities that were previously impossible: light-emitting
                 labels, glowing packaging, smart cards with integrated displays, and
                 architectural surfaces that illuminate.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.25}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-10 max-w-2xl">
+                This is the science behind Lumifoil — our product line that brings printable light to market.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -158,7 +168,7 @@ export default function Home() {
                 { label: "Manufacturing →", led: "Semiconductor", oled: "Vacuum", lec: "Printing" },
                 { label: "Form Factor →", led: "Point source", oled: "Thin panel", lec: "Ultra-thin, flexible" },
                 { label: "Substrate →", led: "Rigid PCB", oled: "Glass/plastic", lec: "Paper, plastic, fabric" },
-                { label: "Rare Earth →", led: "Yes", oled: "Some", lec: "No" },
+                { label: "Rare Earth →", led: "Yes", oled: "Some", lec: "None" },
               ].map((row, i) => (
                 <FadeIn key={row.label} delay={i * 0.05}>
                   <div className={`grid grid-cols-4 border-b border-[#1a1a1a] ${i % 2 === 0 ? "bg-[#0a0a0a]" : "bg-[#050505]"}`}>
@@ -184,7 +194,7 @@ export default function Home() {
                 { label: "Manufacturing", led: "Semiconductor", oled: "Vacuum", lec: "Printing" },
                 { label: "Form Factor", led: "Point source", oled: "Thin panel", lec: "Ultra-thin, flexible" },
                 { label: "Substrate", led: "Rigid PCB", oled: "Glass/plastic", lec: "Paper, plastic, fabric" },
-                { label: "Rare Earth", led: "Yes", oled: "Some", lec: "No" },
+                { label: "Rare Earth", led: "Yes", oled: "Some", lec: "None" },
               ].map((row, i) => (
                 <FadeIn key={row.label} delay={i * 0.05}>
                   <div className={`border-b border-[#1a1a1a] ${i % 2 === 0 ? "bg-[#0a0a0a]" : "bg-[#050505]"}`}>
@@ -227,20 +237,20 @@ export default function Home() {
           {/* Grid - 2x4 layout */}
           <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 content-start">
             {[
-              { name: "Smart Cards", desc: "Authentication & display" },
-              { name: "Packaging", desc: "Brand differentiation" },
-              { name: "Labels", desc: "Status indicators" },
-              { name: "Signage", desc: "Flexible displays" },
-              { name: "Architecture", desc: "Ambient lighting" },
-              { name: "Medical", desc: "Phototherapy devices" },
-              { name: "Wearables", desc: "Integrated displays" },
+              { name: "Smart Cards", desc: "Lumifoil authentication & display" },
+              { name: "Packaging", desc: "Lumifoil brand differentiation" },
+              { name: "Labels", desc: "Lumifoil status indicators" },
+              { name: "Signage", desc: "Lumifoil flexible displays" },
+              { name: "Architecture", desc: "Lumifoil ambient lighting" },
+              { name: "Medical", desc: "Lumifoil phototherapy" },
+              { name: "Wearables", desc: "Lumifoil integrated displays" },
               { name: "More →", desc: "All applications", link: true },
             ].map((app, i) => (
               <FadeIn key={app.name} delay={i * 0.05}>
                 {app.link ? (
                   <Link href="/applications" className={`group/card px-6 py-6 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer flex flex-col`}>
                     <div className="w-10 h-10 bg-[#253ff6] flex items-center justify-center mb-4 transition-colors duration-300 group-hover/card:bg-[#050505]">
-                      <span className="mono text-sm text-white">→</span>
+                      <span className="mono text-sm text-[#050505]">→</span>
                     </div>
                     <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.name}</p>
                     <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>
@@ -248,7 +258,7 @@ export default function Home() {
                 ) : (
                   <div className={`group/card px-6 py-6 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
                     <div className="w-10 h-10 bg-[#253ff6] flex items-center justify-center mb-4 transition-colors duration-300 group-hover/card:bg-[#050505]">
-                      <span className="mono text-sm text-white group-hover/card:text-white">0{i + 1}</span>
+                      <span className="mono text-sm text-[#050505]">0{i + 1}</span>
                     </div>
                     <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.name}</p>
                     <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>

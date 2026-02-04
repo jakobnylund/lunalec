@@ -114,7 +114,7 @@ export default function PartnersPage() {
           <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 content-start">
             {benefits.map((benefit, i) => (
               <FadeIn key={benefit.title} delay={i * 0.05}>
-                <div className={`group/card px-6 py-8 border-b ${i % 3 !== 0 ? "border-l" : ""} ${i % 2 !== 0 && i % 3 !== 0 ? "" : "lg:border-l-0"} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                <div className={`group/card px-6 py-8 border-b ${i % 2 !== 0 ? "border-l" : ""} ${i % 3 !== 0 && i % 2 === 0 ? "md:border-l" : ""} ${i % 3 === 0 && i % 2 !== 0 ? "md:border-l-0" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
                   <p className="text-white text-base mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{benefit.title}</p>
                   <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{benefit.desc}</p>
                 </div>
@@ -187,7 +187,7 @@ export default function PartnersPage() {
           <div className="grid grid-cols-2 content-start">
             {[
               { value: "2014", label: "Founded" },
-              { value: "10+", label: "Years R&D" },
+              { value: "20", label: "Years R&D" },
               { value: "Global", label: "Partnerships" },
               { value: "R2R", label: "Production Ready" },
             ].map((stat, i) => (
