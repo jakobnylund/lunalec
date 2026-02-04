@@ -14,7 +14,7 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/header.jpg"
+            src="/header-hand.jpg"
             alt="LEC light technology"
             fill
             className="object-cover"
@@ -77,20 +77,8 @@ export default function Home() {
       </section>
 
       {/* About LEC */}
-      <section className="border-b-section relative group overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/lightbend.jpg"
-            alt=""
-            fill
-            className="object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-40"
-          />
-        </div>
-        {/* Dot grid overlay */}
-        <div className="dot-grid absolute inset-0 z-0" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 relative z-10">
+      <InViewSection className="border-b-section">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
@@ -132,7 +120,7 @@ export default function Home() {
             </FadeIn>
           </div>
         </div>
-      </section>
+      </InViewSection>
 
       {/* Comparison */}
       <InViewSection className="border-b-section bg-[#0a0a0a]" hoverClassName="group group/comparison">

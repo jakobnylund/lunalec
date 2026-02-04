@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
+import Image from "next/image";
 
 const partnershipModels = [
   {
@@ -45,8 +46,19 @@ export default function PartnersPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <InViewSection className="min-h-[60vh] flex flex-col justify-center border-b-section">
-        <div className="px-6 lg:px-16 py-24">
+      <section className="min-h-[60vh] flex flex-col justify-center border-b-section relative group/hero">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <Image
+            src="/glowing.jpg"
+            alt=""
+            fill
+            className="object-cover"
+          />
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+        </div>
+        <div className="px-6 lg:px-16 py-24 relative z-10">
           <FadeIn>
             <p className="tech-label mb-8">Collaboration</p>
           </FadeIn>
@@ -64,7 +76,7 @@ export default function PartnersPage() {
             </p>
           </FadeIn>
         </div>
-      </InViewSection>
+      </section>
 
       {/* Partnership Models */}
       <InViewSection className="border-b-section">
@@ -111,10 +123,10 @@ export default function PartnersPage() {
           </div>
 
           {/* Grid */}
-          <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 content-start">
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 content-start">
             {benefits.map((benefit, i) => (
-              <FadeIn key={benefit.title} delay={i * 0.05}>
-                <div className={`group/card px-6 py-8 border-b ${i % 2 !== 0 ? "border-l" : ""} ${i % 3 !== 0 && i % 2 === 0 ? "md:border-l" : ""} ${i % 3 === 0 && i % 2 !== 0 ? "md:border-l-0" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+              <FadeIn key={benefit.title} delay={i * 0.05} className="h-full">
+                <div className={`group/card px-6 py-8 border-b border-[#1a1a1a] h-full ${i % 2 !== 0 ? "sm:border-l" : ""} ${i % 3 !== 0 ? "md:border-l" : (i % 2 !== 0 ? "md:border-l-0" : "")} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
                   <p className="text-white text-base mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{benefit.title}</p>
                   <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{benefit.desc}</p>
                 </div>

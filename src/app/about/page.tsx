@@ -24,27 +24,20 @@ export default function AboutPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <section className="min-h-[60vh] flex flex-col justify-center border-b-section relative group/hero">
-        {/* Dot grid background */}
-        <div className="dot-grid absolute inset-0 z-0" />
-
-        {/* Background Map */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {/* Map with transparency so background/dots show through */}
-          <div className="absolute inset-0 grayscale invert brightness-[0.4] contrast-125 scale-110 opacity-30 transition-opacity duration-500 group-hover/hero:opacity-50">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54889.85073088441!2d20.225089!3d63.825848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c4e1b68add7f9%3A0x4034506de8c8560!2sUme%C3%A5%2C%20Sweden!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: '100%', minWidth: '100%' }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+      <InViewSection className="min-h-[60vh] flex flex-col justify-center border-b-section overflow-hidden" hoverClassName="group group/hero">
+        {/* Background Map - visible at 20%, more visible on hover */}
+        <div className="absolute inset-[-50%] opacity-20 group-hover/hero:opacity-40 transition-opacity duration-500 z-0 grayscale invert brightness-[0.7] contrast-200">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54889.85073088441!2d20.225089!3d63.825848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c4e1b68add7f9%3A0x4034506de8c8560!2sUme%C3%A5%2C%20Sweden!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
+            className="w-full h-full"
+            style={{ border: 0 }}
+            allowFullScreen={false}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-[-50%] bg-gradient-to-r from-[#050505]/80 via-[#050505]/40 to-transparent z-0" />
 
         {/* Content */}
         <div className="flex-1 flex items-center relative z-10">
@@ -73,7 +66,7 @@ export default function AboutPage() {
             </FadeIn>
           </div>
         </div>
-      </section>
+      </InViewSection>
 
       {/* Origin */}
       <InViewSection className="border-b-section">

@@ -37,7 +37,7 @@ export default function ApplicationsPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/triangle.jpg"
+            src="/jacket-header.jpg"
             alt=""
             fill
             className="object-cover"
@@ -67,12 +67,8 @@ export default function ApplicationsPage() {
       </section>
 
       {/* Smart Cards */}
-      <InViewSection className="border-b-section bg-[#0a0a0a]" hoverClassName="group group/smartcards">
-        {/* Background image - shows on hover at 30% */}
-        <div className="absolute inset-0 opacity-0 group-hover/smartcards:opacity-30 transition-opacity duration-500 z-0">
-          <Image src="/cards.jpg" alt="Smart Cards" fill className="object-cover" />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 relative z-10">
+      <InViewSection className="border-b-section bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
@@ -106,12 +102,8 @@ export default function ApplicationsPage() {
         </div>
       </InViewSection>
 
-      <InViewSection className="border-b-section" hoverClassName="group group/packaging">
-        {/* Background image - shows on hover at 30% */}
-        <div className="absolute inset-0 opacity-0 group-hover/packaging:opacity-30 transition-opacity duration-500 z-0">
-          <Image src="/header-lion.jpg" alt="Packaging" fill className="object-cover" />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 relative z-10">
+      <InViewSection className="border-b-section">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
@@ -145,12 +137,8 @@ export default function ApplicationsPage() {
         </div>
       </InViewSection>
 
-      <InViewSection className="border-b-section bg-[#0a0a0a]" hoverClassName="group group/medical">
-        {/* Background image - shows on hover at 30% */}
-        <div className="absolute inset-0 opacity-0 group-hover/medical:opacity-30 transition-opacity duration-500 z-0">
-          <Image src="/hand-light.jpg" alt="Medical" fill className="object-cover" />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 relative z-10">
+      <InViewSection className="border-b-section bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
@@ -251,8 +239,8 @@ export default function ApplicationsPage() {
           {/* Grid - 2x2 layout */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 content-start">
             {applications.map((app, i) => (
-              <FadeIn key={app.title} delay={i * 0.05}>
-                <div className={`group/card px-6 py-10 border-b border-[#1a1a1a] ${i % 2 !== 0 ? "sm:border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+              <FadeIn key={app.title} delay={i * 0.05} className="h-full">
+                <div className={`group/card px-6 py-10 border-b border-[#1a1a1a] h-full ${i % 2 !== 0 ? "sm:border-l" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
                   <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.title}</p>
                   <p className="text-base text-[#b0b0b0] mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>
                   <p className="text-sm text-[#808080] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{app.details}</p>
@@ -295,19 +283,18 @@ export default function ApplicationsPage() {
             </FadeIn>
           </div>
 
-          {/* Right */}
-          <div className="relative px-6 lg:px-16 py-24 flex items-center justify-center group cursor-pointer">
-            <div className="absolute inset-0 grid-lines opacity-20" />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)]" />
-            <FadeIn delay={0.2}>
-              <div className="relative z-10 text-center">
-                <div className="w-24 h-24 mx-auto mb-8 border border-[#1a1a1a] flex items-center justify-center group-hover:border-[#253ff6]/30 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.2),0_0_60px_rgba(37,63,246,0.3)] transition-all duration-500">
-                  <span className="mono text-4xl text-[#253ff6]">+</span>
-                </div>
-                <p className="text-white text-xl mb-2">What Will You Create?</p>
-                <p className="text-[#808080]">The next breakthrough application</p>
-              </div>
-            </FadeIn>
+          {/* Right - Product Video */}
+          <div className="relative overflow-hidden min-h-[400px]">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="https://jakob-hosted-content.s3.us-east-1.amazonaws.com/jacket.mov" type="video/quicktime" />
+              <source src="https://jakob-hosted-content.s3.us-east-1.amazonaws.com/jacket.mov" type="video/mp4" />
+            </video>
           </div>
         </div>
       </InViewSection>

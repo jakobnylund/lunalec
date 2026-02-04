@@ -10,11 +10,11 @@ export default function TechnologyPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <section className="min-h-[70vh] flex flex-col justify-center border-b-section relative group/hero overflow-hidden">
+      <section className="min-h-[60vh] flex flex-col justify-center border-b-section relative group/hero overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/lightbend.jpg"
+            src="/sheet.jpg"
             alt=""
             fill
             className="object-cover"
