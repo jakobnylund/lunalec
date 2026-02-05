@@ -268,6 +268,47 @@ export default function TechnologyPage() {
         </div>
       </InViewSection>
 
+      {/* Gallery */}
+      <InViewSection className="border-b-section">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {/* Index */}
+          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+            <FadeIn>
+              <p className="tech-label mb-2">Behind the Scenes</p>
+              <p className="section-title">From the Lab</p>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-[#b0b0b0] text-lg leading-relaxed mt-8">
+                A glimpse into our research and development process. From early prototypes to production-ready technology.
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3">
+            {[
+              { src: "/gallery/1000008200.jpg", alt: "LEC development" },
+              { src: "/gallery/IMAG0237.jpg", alt: "Lab work" },
+              { src: "/gallery/IMG_5157.jpg", alt: "Research process" },
+              { src: "/gallery/IMG_5162.jpg", alt: "Technology testing" },
+              { src: "/gallery/Inks.jpg", alt: "LEC inks" },
+              { src: "/gallery/Photo-LEC-Umu-logo.jpg", alt: "LEC with Umeå University logo" },
+            ].map((image, i) => (
+              <FadeIn key={image.src} delay={i * 0.05}>
+                <div className={`relative aspect-square border-b ${i % 2 !== 0 ? "border-l" : ""} ${i % 3 !== 0 ? "md:border-l" : ""} ${i % 3 === 0 && i % 2 !== 0 ? "md:border-l-0" : ""} border-[#1a1a1a] overflow-hidden group`}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </InViewSection>
+
       {/* CTA */}
       <InViewSection>
         <div className="grid grid-cols-1 lg:grid-cols-2">

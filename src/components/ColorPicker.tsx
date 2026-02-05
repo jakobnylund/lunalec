@@ -2,9 +2,61 @@
 
 import { useState, useRef, useEffect } from "react";
 
-// Default color: #4c2ee5 (hue ~250 degrees = 69.4%)
-const DEFAULT_POSITION = 69.4;
+// Visible light spectrum colors (wavelength order: violet to red)
+// These approximate the actual visible spectrum from ~380nm to ~700nm
+const SPECTRUM_COLORS = [
+  { pos: 0, color: "#7f00ff" },    // Violet (380nm)
+  { pos: 12, color: "#4b0082" },   // Indigo
+  { pos: 25, color: "#0000ff" },   // Blue (450nm)
+  { pos: 38, color: "#00bfff" },   // Cyan (495nm)
+  { pos: 50, color: "#00ff00" },   // Green (530nm)
+  { pos: 62, color: "#adff2f" },   // Yellow-Green
+  { pos: 75, color: "#ffff00" },   // Yellow (580nm)
+  { pos: 87, color: "#ff7f00" },   // Orange (600nm)
+  { pos: 100, color: "#ff0000" },  // Red (700nm)
+];
+
+// Default color: violet-blue (#4c2ee5 approximates position ~15%)
+const DEFAULT_POSITION = 15;
 const DEFAULT_COLOR = "#4c2ee5";
+
+// Interpolate between spectrum colors based on position
+const interpolateColor = (pos: number): string => {
+  // Find the two colors to interpolate between
+  let lower = SPECTRUM_COLORS[0];
+  let upper = SPECTRUM_COLORS[SPECTRUM_COLORS.length - 1];
+
+  for (let i = 0; i < SPECTRUM_COLORS.length - 1; i++) {
+    if (pos >= SPECTRUM_COLORS[i].pos && pos <= SPECTRUM_COLORS[i + 1].pos) {
+      lower = SPECTRUM_COLORS[i];
+      upper = SPECTRUM_COLORS[i + 1];
+      break;
+    }
+  }
+
+  // Calculate interpolation factor
+  const range = upper.pos - lower.pos;
+  const factor = range === 0 ? 0 : (pos - lower.pos) / range;
+
+  // Parse hex colors
+  const lowerRgb = {
+    r: parseInt(lower.color.slice(1, 3), 16),
+    g: parseInt(lower.color.slice(3, 5), 16),
+    b: parseInt(lower.color.slice(5, 7), 16),
+  };
+  const upperRgb = {
+    r: parseInt(upper.color.slice(1, 3), 16),
+    g: parseInt(upper.color.slice(3, 5), 16),
+    b: parseInt(upper.color.slice(5, 7), 16),
+  };
+
+  // Interpolate
+  const r = Math.round(lowerRgb.r + (upperRgb.r - lowerRgb.r) * factor);
+  const g = Math.round(lowerRgb.g + (upperRgb.g - lowerRgb.g) * factor);
+  const b = Math.round(lowerRgb.b + (upperRgb.b - lowerRgb.b) * factor);
+
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+};
 
 export default function ColorPicker() {
   const [position, setPosition] = useState<number | null>(null); // null until initialized
@@ -12,37 +64,14 @@ export default function ColorPicker() {
   const [isInitialized, setIsInitialized] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
 
-  // Convert position to HSL color (full spectrum)
+  // Convert position to color using spectrum interpolation
   const getColorFromPosition = (pos: number) => {
-    const hue = (pos / 100) * 360;
-    return `hsl(${hue}, 85%, 55%)`;
+    return interpolateColor(pos);
   };
 
-  // Convert position to hex color
+  // Convert position to hex color (same as getColorFromPosition for this implementation)
   const getHexFromPosition = (pos: number) => {
-    const hue = (pos / 100) * 360;
-    const s = 0.85;
-    const l = 0.55;
-
-    const c = (1 - Math.abs(2 * l - 1)) * s;
-    const x = c * (1 - Math.abs((hue / 60) % 2 - 1));
-    const m = l - c / 2;
-
-    let r = 0, g = 0, b = 0;
-
-    if (hue < 60) { r = c; g = x; b = 0; }
-    else if (hue < 120) { r = x; g = c; b = 0; }
-    else if (hue < 180) { r = 0; g = c; b = x; }
-    else if (hue < 240) { r = 0; g = x; b = c; }
-    else if (hue < 300) { r = x; g = 0; b = c; }
-    else { r = c; g = 0; b = x; }
-
-    const toHex = (n: number) => {
-      const hex = Math.round((n + m) * 255).toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    };
-
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    return interpolateColor(pos);
   };
 
   // Apply color to CSS custom property (only after initialization)
@@ -136,13 +165,15 @@ export default function ColorPicker() {
         onTouchStart={handleTouchStart}
         style={{
           background: `linear-gradient(to right,
-            hsl(0, 85%, 55%),
-            hsl(60, 85%, 55%),
-            hsl(120, 85%, 55%),
-            hsl(180, 85%, 55%),
-            hsl(240, 85%, 55%),
-            hsl(300, 85%, 55%),
-            hsl(360, 85%, 55%)
+            #7f00ff 0%,
+            #4b0082 12%,
+            #0000ff 25%,
+            #00bfff 38%,
+            #00ff00 50%,
+            #adff2f 62%,
+            #ffff00 75%,
+            #ff7f00 87%,
+            #ff0000 100%
           )`,
         }}
       >
