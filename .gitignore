@@ -147,3 +147,8 @@ vite.config.ts.timestamp-*
 
 # Local-only client feedback (not source-controlled)
 feedback/
+
+.vercel
+
+# Source / working photo set (originals; cropped/optimised versions live in /public)
+images/

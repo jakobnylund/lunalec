@@ -18,9 +18,10 @@ export default function TechnologyPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={isLight ? "/sheet-light.jpg" : "/sheet.jpg"}
+            src={isLight ? "/sheet-light.jpg" : "/lec/hero-tech.jpg"}
             alt=""
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
@@ -233,6 +234,30 @@ export default function TechnologyPage() {
         </div>
       </InViewSection>
 
+      {/* Spectrum divider */}
+      <section className="relative h-[55vh] md:h-[70vh] border-b-section overflow-hidden group/spectrum">
+        <Image
+          src="/lec/spectrum-bg.jpg"
+          alt="LunaLEC team member in the lab"
+          fill
+          sizes="100vw"
+          className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/spectrum:scale-[1.04]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-90 group-hover/spectrum:opacity-70 transition-opacity duration-500" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="px-6 lg:px-16 py-12 lg:py-16 max-w-3xl">
+            <FadeIn>
+              <p className="tech-label mb-3">Across the Spectrum</p>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <h2 className="text-3xl md:text-5xl text-white leading-tight tracking-tight">
+                Tunable color, formulated as ink.
+              </h2>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* Sustainability */}
       <InViewSection className="border-b-section bg-[#0a0a0a]">
         <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -290,12 +315,12 @@ export default function TechnologyPage() {
           {/* Gallery Grid */}
           <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-3">
             {[
-              { src: "/gallery/1000008200.jpg", alt: "LEC development" },
-              { src: "/gallery/IMAG0237.jpg", alt: "Lab work" },
-              { src: "/gallery/IMG_5157.jpg", alt: "Research process" },
-              { src: "/gallery/IMG_5162.jpg", alt: "Technology testing" },
-              { src: "/gallery/Inks.jpg", alt: "LEC inks" },
-              { src: "/gallery/Photo-LEC-Umu-logo.jpg", alt: "LEC with Umeå University logo" },
+              { src: "/lec/spectrum-rainbow.jpg", alt: "Vials of LEC emitter inks across the visible spectrum" },
+              { src: "/lec/tile-chip-macro.jpg", alt: "Macro of a printed LEC chip with the LunaLEC logo glowing" },
+              { src: "/lec/tile-array-purple.jpg", alt: "Array of printed LEC tiles under UV illumination" },
+              { src: "/lec/tile-curve-band.jpg", alt: "Curved LEC tile band lit by battery" },
+              { src: "/lec/tile-curve-hero.jpg", alt: "Flexible LEC tile band glowing yellow, held in hand" },
+              { src: "/lec/process-frame.jpg", alt: "Founder with the screen-printing frame for LEC tiles" },
             ].map((image, i) => (
               <FadeIn key={image.src} delay={i * 0.05}>
                 <div className={`relative aspect-square border-b ${i % 2 !== 0 ? "border-l" : ""} ${i % 3 !== 0 ? "md:border-l" : ""} ${i % 3 === 0 && i % 2 !== 0 ? "md:border-l-0" : ""} border-[#1a1a1a] overflow-hidden group`}>
@@ -303,6 +328,7 @@ export default function TechnologyPage() {
                     src={image.src}
                     alt={image.alt}
                     fill
+                    sizes="(min-width: 1024px) 22vw, (min-width: 768px) 33vw, 50vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

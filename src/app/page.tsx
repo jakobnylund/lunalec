@@ -28,8 +28,8 @@ export default function Home() {
           />
           {/* Desktop landscape crop */}
           <Image
-            src={isLight ? "/header-light.jpg" : "/lunalec-strip.jpg"}
-            alt="LEC strip with glowing LunaLEC components on a printed flexible substrate"
+            src={isLight ? "/header-light.jpg" : "/lec/hero-home.jpg"}
+            alt="LunaLEC tile glowing in hand"
             fill
             sizes="100vw"
             className="hidden md:block object-cover object-right transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/hero:scale-[1.04]"
@@ -211,17 +211,17 @@ export default function Home() {
         </div>
       </InViewSection>
 
-      {/* Divider Image - Hidden
-      <section className="relative h-[50vh] border-b-section overflow-hidden group/divider">
+      {/* Divider — flexible LEC band */}
+      <section className="relative h-[60vh] md:h-[80vh] border-b-section overflow-hidden group/divider">
         <Image
-          src="/header-lion.jpg"
-          alt="LEC light technology"
+          src="/lec/divider-home.jpg"
+          alt="Flexible LEC tile band glowing yellow, held in hand"
           fill
-          className="object-cover"
+          sizes="100vw"
+          className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/divider:scale-[1.04]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#050505] transition-opacity duration-500 group-hover/divider:opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505] transition-opacity duration-500 group-hover/divider:opacity-60" />
       </section>
-      */}
 
       {/* Origin */}
       <InViewSection className="border-b-section">

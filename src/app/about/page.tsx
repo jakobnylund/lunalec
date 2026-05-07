@@ -4,7 +4,14 @@ import Button from "@/components/Button";
 import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
+
+const team = [
+  { name: "Christian Larsen", role: "CTO", email: "christian@lunalec.com" },
+  { name: "Henrik Lundgren", role: "Business Development", email: "henrik@lunalec.com" },
+  { name: "Erik Zäll", role: "Senior Research Engineer", email: "erik@lunalec.com" },
+];
 
 const values = [
   { title: "Innovation", desc: "Pushing boundaries of what's possible with light" },
@@ -97,6 +104,50 @@ export default function AboutPage() {
                 that improve people&apos;s lives.
               </p>
             </FadeIn>
+          </div>
+        </div>
+      </InViewSection>
+
+      {/* Team */}
+      <InViewSection className="border-b-section">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {/* Index */}
+          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+            <FadeIn>
+              <p className="tech-label mb-2">The People</p>
+              <p className="section-title">Team</p>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-[#b0b0b0] text-base leading-relaxed mt-8 max-w-sm">
+                A small, focused team translating two decades of LEC research into commercial products.
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Portrait + roster */}
+          <div className="lg:col-span-2">
+            <div className="relative aspect-[16/10] md:aspect-[16/9] border-b border-[#1a1a1a] overflow-hidden group">
+              <Image
+                src="/lec/spectrum-line.jpg"
+                alt="LEC emitter inks fluorescing across the visible spectrum"
+                fill
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3">
+              {team.map((person, i) => (
+                <FadeIn key={person.email} delay={i * 0.08} className="h-full">
+                  <div className={`group/card h-full px-6 lg:px-10 py-10 ${i > 0 ? "md:border-l border-[#1a1a1a]" : ""} ${i < team.length - 1 ? "border-b md:border-b-0 border-[#1a1a1a]" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300`}>
+                    <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">{person.role}</p>
+                    <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">{person.name}</p>
+                    <a href={`mailto:${person.email}`} className="mono text-sm text-[#253ff6] transition-colors duration-300 group-hover/card:!text-[#050505]">
+                      {person.email}
+                    </a>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </InViewSection>
