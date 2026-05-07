@@ -25,6 +25,13 @@
   color: var(--accent) !important;
 }
 
+/* Hairline borders inherit a subtle tint from the active accent so the
+   spectrum slider also colors the architectural lines (not just the dots
+   and accent text). */
+.border-\[\#1a1a1a\] {
+  border-color: color-mix(in srgb, var(--accent) 10%, #1a1a1a) !important;
+}
+
 /* Custom accent utility classes */
 .bg-accent {
   background-color: var(--accent);
@@ -180,26 +187,26 @@ section.group:hover .dot-grid {
   border-color: var(--border);
 }
 
-/* Section dividers - thick borders for major sections */
+/* Section dividers - thick borders for major sections (tinted with accent) */
 .border-section {
-  border-color: #2a2a2a;
+  border-color: color-mix(in srgb, var(--accent) 14%, #2a2a2a);
   border-width: 2px;
 }
 
 .border-t-section {
-  border-top: 2px solid #2a2a2a;
+  border-top: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
 }
 
 .border-b-section {
-  border-bottom: 2px solid #2a2a2a;
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
 }
 
 .border-l-section {
-  border-left: 2px solid #2a2a2a;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
 }
 
 .border-r-section {
-  border-right: 2px solid #2a2a2a;
+  border-right: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
 }
 
 /* Light mode thick borders */
