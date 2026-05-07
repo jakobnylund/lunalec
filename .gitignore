@@ -137,3 +137,13 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# macOS
+.DS_Store
+
+# Claude Code skills (restored via skills-lock.json)
+.agents/
+.claude/
+
+# Local-only client feedback (not source-controlled)
+feedback/

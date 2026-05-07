@@ -207,9 +207,8 @@ export default function ColorPicker() {
               Any Color You Can Imagine
             </h3>
             <p className="text-[#b0b0b0] leading-relaxed">
-              LEC technology can produce light across the entire visible spectrum.
-              Red, green, blue, and everything in between—our materials can be
-              tuned to emit any wavelength you need.
+              From white light, LEC technology can produce any color across the entire visible spectrum.
+              Red, green, blue, and everything in between — our materials can be tuned to emit any wavelength you need.
             </p>
           </div>
           <div>
@@ -220,12 +219,10 @@ export default function ColorPicker() {
             <p className="text-[#b0b0b0] leading-relaxed mb-4">
               While colored light is impressive, the real breakthrough is
               <span className="text-white font-medium"> white light</span>.
-              Achieving efficient, stable white emission from a printable source
-              unlocks applications that were previously impossible.
+              Achieving efficient, stable white emission from a printable light source — all from a surface thinner than a sheet of paper — unlocks applications that were previously impossible.
             </p>
             <p className="text-[#b0b0b0] leading-relaxed">
               General illumination. Reading lights. Display backlights.
-              All from a surface thinner than a sheet of paper.
             </p>
           </div>
         </div>

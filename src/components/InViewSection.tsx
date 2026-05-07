@@ -9,6 +9,9 @@ interface InViewSectionProps {
   className?: string;
   /** Additional classes to apply only on desktop for hover effects */
   hoverClassName?: string;
+  id?: string;
+  /** Suppress the static dot-grid background pattern (e.g. when using DotField) */
+  noDotGrid?: boolean;
 }
 
 /**
@@ -25,6 +28,8 @@ export default function InViewSection({
   children,
   className = "",
   hoverClassName = "group",
+  id,
+  noDotGrid = false,
 }: InViewSectionProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
@@ -49,8 +54,8 @@ export default function InViewSection({
   // Server-side or before hydration: render without animations
   if (!hasMounted) {
     return (
-      <section className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
-        <div className="dot-grid absolute inset-0 z-0" />
+      <section id={id} className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
+        {!noDotGrid && <div className="dot-grid absolute inset-0 z-0" />}
         <div className="relative z-10">
           {children}
         </div>
@@ -61,7 +66,7 @@ export default function InViewSection({
   // Light mode: static sections without hover effects
   if (isLight) {
     return (
-      <section className={className}>
+      <section id={id} className={className}>
         {children}
       </section>
     );
@@ -70,9 +75,9 @@ export default function InViewSection({
   // Desktop: return section with group class for CSS hover effects
   if (!isTouchDevice) {
     return (
-      <section className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
+      <section id={id} className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
         {/* Dot grid overlay */}
-        <div className="dot-grid absolute inset-0 z-0" />
+        {!noDotGrid && <div className="dot-grid absolute inset-0 z-0" />}
         <div className="relative z-10">
           {children}
         </div>
@@ -83,7 +88,7 @@ export default function InViewSection({
   // Respect reduced motion preferences
   if (prefersReducedMotion) {
     return (
-      <section className={className}>
+      <section id={id} className={className}>
         {children}
       </section>
     );
@@ -92,6 +97,7 @@ export default function InViewSection({
   // Mobile: use Framer Motion for in-view glow animation
   return (
     <motion.section
+      id={id}
       className={`transition-colors duration-300 ${className} relative overflow-hidden`}
       initial={false}
       whileInView="visible"
@@ -113,7 +119,7 @@ export default function InViewSection({
       }}
     >
       {/* Dot grid overlay */}
-      <div className="dot-grid absolute inset-0 z-0" />
+      {!noDotGrid && <div className="dot-grid absolute inset-0 z-0" />}
       <div className="relative z-10">
         {children}
       </div>

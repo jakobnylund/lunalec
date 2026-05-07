@@ -33,13 +33,13 @@ export default function ContactPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <InViewSection className="min-h-[50vh] flex flex-col justify-center border-b-section">
+      <InViewSection className="min-h-[50dvh] flex flex-col justify-center border-b-section">
         <div className="px-6 lg:px-16 py-24">
           <FadeIn>
             <p className="tech-label mb-8">Get in Touch</p>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-white mb-8 max-w-4xl">
+            <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tighter text-white mb-8 max-w-4xl">
               Let&apos;s Talk
               <br />
               <span className="text-[#253ff6]">Light</span>
@@ -61,12 +61,7 @@ export default function ContactPage() {
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
               <p className="tech-label mb-2">Reach Out</p>
-              <p className="section-title mb-8">Message</p>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="text-2xl md:text-3xl text-white mb-10">
-                Send Us a Message
-              </h2>
+              <p className="section-title mb-10">Send Us a Message</p>
             </FadeIn>
 
             {submitted ? (
@@ -188,71 +183,132 @@ export default function ContactPage() {
             )}
           </div>
 
-          {/* Contact Info */}
-          <div className="px-6 lg:px-16 py-16 lg:py-24 bg-[#0a0a0a]">
-            <FadeIn>
-              <p className="tech-label mb-2">Contact Info</p>
-              <p className="section-title mb-8">Direct</p>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="text-2xl md:text-3xl text-white mb-10">
-                Direct Contact
-              </h2>
-            </FadeIn>
+          {/* Contact Info — full-cell grid matching site grammar */}
+          <div className="bg-[#0a0a0a] flex flex-col">
+            <div className="px-6 lg:px-16 pt-16 lg:pt-24 pb-10">
+              <FadeIn>
+                <p className="tech-label mb-2">Contact Info</p>
+                <p className="section-title">Direct</p>
+              </FadeIn>
+            </div>
 
-            <div className="space-y-8">
-              <FadeIn delay={0.2}>
-                <div className="group/card border-l border-[#1a1a1a] pl-6 py-2 -ml-px hover:border-l-[#253ff6] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
-                  <p className="tech-label mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">Email</p>
-                  <a href="mailto:info@lunalec.com" className="text-[#253ff6] transition-colors duration-300 group-hover/card:!text-[#050505]">
-                    info@lunalec.com
-                  </a>
-                  <p className="text-sm text-[#808080] mt-2 transition-colors duration-300 group-hover/card:!text-[#050505]">Response within 1-2 business days</p>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-[#1a1a1a]">
+              <FadeIn delay={0.1}>
+                <a
+                  href="mailto:info@lunalec.com"
+                  className="group/card block px-6 lg:px-12 py-10 border-b sm:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full"
+                >
+                  <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Email</p>
+                  <p className="text-[#253ff6] text-lg mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">info@lunalec.com</p>
+                  <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">Response within 1–2 business days</p>
+                </a>
               </FadeIn>
 
-              <FadeIn delay={0.3}>
-                <div className="group/card border-l border-[#1a1a1a] pl-6 py-2 -ml-px hover:border-l-[#253ff6] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
-                  <p className="tech-label mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">Address</p>
-                  <p className="text-[#b0b0b0] transition-colors duration-300 group-hover/card:!text-[#050505]">
+              <FadeIn delay={0.15}>
+                <div className="group/card px-6 lg:px-12 py-10 border-b border-[#1a1a1a] h-full">
+                  <p className="tech-label mb-3">Address</p>
+                  <p className="text-[#b0b0b0] leading-relaxed">
                     LunaLEC AB<br />
-                    Tvistevägen 48C<br />
+                    Linnaeus väg 8C<br />
                     907 36 Umeå<br />
                     Sweden
                   </p>
                 </div>
               </FadeIn>
 
-              <FadeIn delay={0.4}>
-                <div className="group/card border-l border-[#1a1a1a] pl-6 py-2 -ml-px hover:border-l-[#253ff6] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
-                  <p className="tech-label mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">Hours</p>
-                  <p className="text-[#b0b0b0] transition-colors duration-300 group-hover/card:!text-[#050505]">
-                    Monday - Friday<br />
-                    9:00 AM - 5:00 PM CET
+              <FadeIn delay={0.2}>
+                <div className="group/card px-6 lg:px-12 py-10 border-b sm:border-b-0 sm:border-r border-[#1a1a1a] h-full">
+                  <p className="tech-label mb-3">Hours</p>
+                  <p className="text-[#b0b0b0] leading-relaxed">
+                    Monday – Friday<br />
+                    9:00 – 17:00 CET
                   </p>
                 </div>
               </FadeIn>
 
-              <FadeIn delay={0.5}>
-                <div className="group/card border-l border-[#1a1a1a] pl-6 py-2 -ml-px hover:border-l-[#253ff6] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
-                  <p className="tech-label mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">LinkedIn</p>
-                  <a
-                    href="https://linkedin.com/company/lunalec"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#253ff6] transition-colors duration-300 group-hover/card:!text-[#050505]"
-                  >
-                    Follow us on LinkedIn
-                  </a>
-                </div>
+              <FadeIn delay={0.25}>
+                <a
+                  href="https://linkedin.com/company/lunalec"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/card block px-6 lg:px-12 py-10 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full"
+                >
+                  <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">LinkedIn</p>
+                  <p className="arrow-link text-[#253ff6] text-lg transition-colors duration-300 group-hover/card:!text-[#050505]">
+                    Follow us
+                  </p>
+                </a>
               </FadeIn>
             </div>
           </div>
         </div>
       </InViewSection>
 
+      {/* Collaboration Options */}
+      <InViewSection id="collaboration" className="border-b-section">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {/* Index */}
+          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+            <FadeIn>
+              <p className="tech-label mb-2">Work With Us</p>
+              <p className="section-title">Collaboration</p>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="text-[#b0b0b0] text-base leading-relaxed mt-8 max-w-sm">
+                We work with forward-thinking companies across industries — from technology licensing to joint development.
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Cards */}
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 content-start">
+            {[
+              {
+                title: "Licensing",
+                desc: "Access our IP portfolio",
+                details: "License our LEC technology to manufacture in your own facilities. Ideal for companies with existing production capabilities.",
+                features: ["Core LEC IP", "Technical training", "Material specs", "QA protocols"],
+              },
+              {
+                title: "Joint Development",
+                desc: "Co-develop solutions and products",
+                details: "Work together from concept to production-ready designs, sharing knowledge and development costs.",
+                features: ["Custom design", "Shared costs", "Application expertise", "Faster to market"],
+              },
+              {
+                title: "OEM Supply",
+                desc: "Custom manufacturing",
+                details: "We manufacture LEC components or finished modules to your specifications. No need to build manufacturing capabilities.",
+                features: ["Custom specs", "Scalable production", "Quality guaranteed", "Supply agreement"],
+              },
+              {
+                title: "Research",
+                desc: "Academic collaboration",
+                details: "Partner with us to advance LEC science. Access to our expertise and facilities for research projects.",
+                features: ["Facility access", "Joint publications", "Student opportunities", "Grant collaboration"],
+              },
+            ].map((model, i) => (
+              <FadeIn key={model.title} delay={i * 0.08}>
+                <div className={`group/card px-6 lg:px-10 py-10 border-b ${i % 2 === 1 ? "md:border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer h-full flex flex-col`}>
+                  <p className="text-white text-xl mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{model.title}</p>
+                  <p className="text-base text-[#b0b0b0] mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{model.desc}</p>
+                  <p className="text-base text-[#b0b0b0] leading-relaxed mb-6 transition-colors duration-300 group-hover/card:!text-[#050505]">{model.details}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {model.features.map((feature) => (
+                      <span key={feature} className="text-sm text-[#808080] border border-[#1a1a1a] px-2 py-1 transition-colors duration-300 group-hover/card:!text-[#050505] group-hover/card:border-[#050505]/20">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </InViewSection>
+
       {/* FAQ */}
-      <InViewSection>
+      <InViewSection className="border-b-section">
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
@@ -279,13 +335,13 @@ export default function ContactPage() {
               },
               {
                 q: "What industries do you work with?",
-                a: "Consumer electronics, packaging, healthcare, automotive, architecture, and more.",
+                a: "Consumer electronics, packaging, labels, security, automotive, signage, architecture, and more.",
               },
             ].map((faq, i) => (
-              <FadeIn key={faq.q} delay={i * 0.1}>
-                <div className={`group/card px-6 lg:px-16 py-8 border-b border-[#1a1a1a] ${i === 3 ? "border-b-0" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
-                  <p className="text-white mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">{faq.q}</p>
-                  <p className="text-base text-[#b0b0b0] transition-colors duration-300 group-hover/card:!text-[#050505]">{faq.a}</p>
+              <FadeIn key={faq.q} delay={i * 0.08}>
+                <div className="group/card px-6 lg:px-16 py-10 border-b border-[#1a1a1a] last:border-b-0 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
+                  <p className="text-white text-lg mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">{faq.q}</p>
+                  <p className="text-base text-[#b0b0b0] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{faq.a}</p>
                 </div>
               </FadeIn>
             ))}

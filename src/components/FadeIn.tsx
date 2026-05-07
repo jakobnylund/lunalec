@@ -18,13 +18,13 @@ export default function FadeIn({
 }: FadeInProps) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{
-        duration,
+        duration: duration + 0.2,
         delay,
-        ease: "easeOut",
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >

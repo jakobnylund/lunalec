@@ -41,7 +41,7 @@ export default function RootLayout({
       >
         <Providers>
           <Header />
-          <main className="min-h-screen pt-24 lg:pt-32">{children}</main>
+          <main className="min-h-[100dvh] pt-24 lg:pt-32">{children}</main>
           <Footer />
           <ColorPicker />
         </Providers>

@@ -20,7 +20,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium transition-all duration-300";
+    "inline-flex items-center justify-center font-medium transition-all duration-300 active:scale-[0.98] active:translate-y-[1px]";
 
   const variants = {
     primary: "bg-accent text-[#050505] hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.6),0_0_80px_var(--accent)] hover:scale-[1.02]",

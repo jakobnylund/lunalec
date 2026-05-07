@@ -6,14 +6,6 @@ import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 
-const milestones = [
-  { year: "2008", title: "Research Begins", desc: "Foundational LEC research at Umeå University" },
-  { year: "2014", title: "LunaLEC Founded", desc: "Company established to commercialize LEC" },
-  { year: "2018", title: "First Prototypes", desc: "Printable LEC devices on flexible substrates" },
-  { year: "2021", title: "Pilot Production", desc: "Production capabilities for partner projects" },
-  { year: "2024", title: "Commercial Scale", desc: "Roll-to-roll manufacturing ready" },
-];
-
 const values = [
   { title: "Innovation", desc: "Pushing boundaries of what's possible with light" },
   { title: "Sustainability", desc: "Technology that respects our planet" },
@@ -27,7 +19,7 @@ export default function AboutPage() {
   return (
     <div className="bg-[#050505]">
       {/* Hero */}
-      <InViewSection className="min-h-[60vh] flex flex-col justify-center border-b-section overflow-hidden" hoverClassName="group group/hero">
+      <InViewSection className="min-h-[60dvh] flex flex-col justify-center border-b-section overflow-hidden" hoverClassName="group group/hero">
         {/* Background Map - visible at 20%, more visible on hover */}
         <div className="absolute inset-[-50%] opacity-20 group-hover/hero:opacity-40 transition-opacity duration-500 z-0 grayscale invert brightness-[0.7] contrast-200">
           <iframe
@@ -51,7 +43,7 @@ export default function AboutPage() {
               <p className="tech-label mb-8">Company</p>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tight text-white mb-8">
+              <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.9] tracking-tighter text-white mb-8">
                 Illuminating
                 <br />
                 <span className="text-[#253ff6]">Tomorrow</span>
@@ -94,7 +86,7 @@ export default function AboutPage() {
             <FadeIn delay={0.1}>
               <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
                 LunaLEC emerged from nearly two decades of Light-emitting Electrochemical
-                Cell research at Umeå University. In 2014, recognizing the commercial potential, we
+                Cell research at Umeå University. In 2012, recognizing the commercial potential, we
                 founded LunaLEC to bridge academic research and real-world applications.
               </p>
             </FadeIn>
@@ -105,36 +97,6 @@ export default function AboutPage() {
                 that improve people&apos;s lives.
               </p>
             </FadeIn>
-          </div>
-        </div>
-      </InViewSection>
-
-      {/* Timeline */}
-      <InViewSection className="border-b-section bg-[#0a0a0a]">
-        <div className="grid grid-cols-1 lg:grid-cols-3">
-          {/* Index */}
-          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
-            <FadeIn>
-              <p className="tech-label mb-2">Key Milestones</p>
-              <p className="section-title">Journey</p>
-            </FadeIn>
-          </div>
-
-          {/* Timeline */}
-          <div className="lg:col-span-2">
-            {milestones.map((milestone, i) => (
-              <FadeIn key={milestone.year} delay={i * 0.1}>
-                <div className="group/card grid grid-cols-3 border-b border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
-                  <div className="px-6 py-6 border-r border-[#1a1a1a] group-hover/card:border-r-[#e0e0e0] transition-colors">
-                    <p className="mono text-2xl text-[#253ff6] transition-colors duration-300 group-hover/card:!text-[#050505]">{milestone.year}</p>
-                  </div>
-                  <div className="col-span-2 px-6 py-6">
-                    <p className="text-white mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{milestone.title}</p>
-                    <p className="text-base text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{milestone.desc}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
           </div>
         </div>
       </InViewSection>
@@ -157,17 +119,19 @@ export default function AboutPage() {
           </div>
 
           {/* Values */}
-          <div className="lg:col-span-2 px-6 lg:px-16 py-16 lg:py-24 bg-[#0a0a0a]">
-            <FadeIn>
-              <p className="tech-label mb-2">What We Believe</p>
-              <p className="section-title">Values</p>
-            </FadeIn>
-            <div className="grid grid-cols-2 gap-6 mt-8">
+          <div className="lg:col-span-2 bg-[#0a0a0a] flex flex-col">
+            <div className="px-6 lg:px-16 pt-16 lg:pt-24 pb-10">
+              <FadeIn>
+                <p className="tech-label mb-2">What We Believe</p>
+                <p className="section-title">Values</p>
+              </FadeIn>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-[#1a1a1a] flex-1">
               {values.map((value, i) => (
-                <FadeIn key={value.title} delay={0.1 + i * 0.05}>
-                  <div className="group/card border-l border-[#253ff6] pl-4 py-2 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
-                    <p className="text-white transition-colors duration-300 group-hover/card:!text-[#050505]">{value.title}</p>
-                    <p className="text-base text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{value.desc}</p>
+                <FadeIn key={value.title} delay={0.1 + i * 0.05} className="h-full">
+                  <div className={`group/card h-full px-6 lg:px-12 py-10 border-b border-[#1a1a1a] ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "sm:border-b-0" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                    <p className="text-white text-lg mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{value.title}</p>
+                    <p className="text-base text-[#808080] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{value.desc}</p>
                   </div>
                 </FadeIn>
               ))}
@@ -191,26 +155,31 @@ export default function AboutPage() {
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 content-start">
             <div className="px-6 lg:px-16 py-16 lg:py-24 border-b md:border-r border-[#1a1a1a]">
               <FadeIn>
-                <h2 className="text-3xl md:text-4xl text-white mb-8">
-                  Where We Are
+                <h2 className="text-3xl md:text-4xl text-white mb-8 max-w-md">
+                  Headquartered in the Swedish Arctic.
                 </h2>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <p className="text-[#b0b0b0] text-lg leading-relaxed mb-8">
-                  Headquartered in Umeå, Sweden—a vibrant university city near the
-                  Arctic Circle with world-class talent and research infrastructure.
+                <p className="text-[#b0b0b0] text-lg leading-relaxed">
+                  Umeå is a vibrant university city near the Arctic Circle with world-class talent and research infrastructure — a natural home for deep tech.
                 </p>
               </FadeIn>
             </div>
-            <div className="px-6 lg:px-16 py-16 lg:py-24 border-b border-[#1a1a1a]">
+            <div className="px-6 lg:px-16 py-16 lg:py-24">
               <FadeIn delay={0.2}>
                 <p className="tech-label mb-4">Address</p>
-                <p className="text-[#b0b0b0] leading-relaxed mb-8">
+                <p className="text-[#b0b0b0] leading-relaxed mb-6">
                   LunaLEC AB<br />
-                  Tvistevägen 48C<br />
+                  Linnaeus väg 8C<br />
                   907 36 Umeå<br />
                   Sweden
                 </p>
+              </FadeIn>
+              <FadeIn delay={0.3}>
+                <div className="flex items-baseline gap-3 text-[#808080]">
+                  <span className="mono text-sm">63.8258° N</span>
+                  <span className="mono text-sm">20.2630° E</span>
+                </div>
               </FadeIn>
             </div>
           </div>
@@ -244,7 +213,7 @@ export default function AboutPage() {
             <FadeIn delay={0.2}>
               <div className="flex gap-4">
                 <Button href="/contact">Get in Touch</Button>
-                <Button href="/partners" variant="ghost">Partnership Options →</Button>
+                <Button href="/contact#collaboration" variant="ghost">Collaboration Options →</Button>
               </div>
             </FadeIn>
           </div>
