@@ -28,8 +28,8 @@ export default function Home() {
           />
           {/* Desktop landscape crop */}
           <Image
-            src={isLight ? "/header-light.jpg" : "/lec/hero-home.jpg"}
-            alt="LunaLEC tile glowing in hand"
+            src={isLight ? "/header-light.jpg" : "/lunalec-strip.jpg"}
+            alt="LEC strip with glowing LunaLEC components on a printed flexible substrate"
             fill
             sizes="100vw"
             className="hidden md:block object-cover object-right transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/hero:scale-[1.04]"
