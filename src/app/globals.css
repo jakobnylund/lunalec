@@ -236,9 +236,9 @@ section.group:hover .dot-grid {
 /* Technical label */
 .tech-label {
   font-family: var(--font-mono), monospace;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-tertiary);
 }
@@ -718,8 +718,8 @@ section.group:hover .border-t {
   }
 
   .tech-label {
-    font-size: 0.875rem;
-    letter-spacing: 0.08em;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
   }
 
   /* Reduce section padding on mobile for better content density */
