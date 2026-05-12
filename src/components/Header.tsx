@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import LightSwitch from "@/components/LightSwitch";
 
 const navigation = [
   { name: "Home", href: "/", index: "01" },
@@ -24,21 +23,18 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/95 backdrop-blur-sm border-b-section">
       <nav className="grid grid-cols-3 items-stretch h-24 lg:h-32 relative z-10">
         {/* Logo cell — left 1/3, padding matches page index column */}
-        <div className="flex items-center justify-between gap-4 px-6 lg:px-16 border-r border-[#1a1a1a] relative">
-          <Link
-            href="/"
-            className="group/logo flex items-center transition-all duration-300"
-          >
-            <Image
-              src="/lunalec-white.svg"
-              alt="LunaLEC"
-              width={398}
-              height={398}
-              className="w-12 lg:w-16 h-auto transition-all duration-300 group-hover/logo:opacity-70"
-            />
-          </Link>
-          <LightSwitch />
-        </div>
+        <Link
+          href="/"
+          className="group/logo flex items-center px-6 lg:px-16 border-r border-[#1a1a1a] transition-all duration-300 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_var(--accent)] hover:border-white/80"
+        >
+          <Image
+            src="/lunalec-white.svg"
+            alt="LunaLEC"
+            width={398}
+            height={398}
+            className="w-12 lg:w-16 h-auto transition-all duration-300 group-hover/logo:invert"
+          />
+        </Link>
 
         {/* Desktop Navigation — right 2/3 split into 4 equal cells */}
         <div className="hidden md:grid col-span-2 grid-cols-4 items-stretch">
