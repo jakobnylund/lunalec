@@ -156,7 +156,7 @@ export default function ColorPicker() {
   const currentColor = getColorFromPosition(position ?? DEFAULT_POSITION);
 
   return (
-    <div className="bg-[#050505]">
+    <div className="bg-[var(--background)]">
       {/* Spectrum bar - full width */}
       <div
         ref={barRef}
@@ -199,6 +199,15 @@ export default function ColorPicker() {
       <div className="px-6 lg:px-16 py-12 border-t border-[#1a1a1a]">
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
+            <p className="tech-label mb-4">The Breakthrough</p>
+            <h3 className="text-2xl text-white mb-4">
+              White Light Changes Everything
+            </h3>
+            <p className="text-[#b0b0b0] leading-relaxed">
+              The real breakthrough is <span className="text-white font-medium">white light</span>. Achieving efficient, stable white emission from a printable light-source, all from a surface thinner than a sheet of paper, unlocks applications that were previously impossible.
+            </p>
+          </div>
+          <div>
             <p className="tech-label mb-4">The Full Spectrum</p>
             <h3
               className="text-2xl mb-4 transition-colors duration-300"
@@ -207,22 +216,7 @@ export default function ColorPicker() {
               Any Color You Can Imagine
             </h3>
             <p className="text-[#b0b0b0] leading-relaxed">
-              From white light, LEC technology can produce any color across the entire visible spectrum.
-              Red, green, blue, and everything in between — our materials can be tuned to emit any wavelength you need.
-            </p>
-          </div>
-          <div>
-            <p className="tech-label mb-4">The Breakthrough</p>
-            <h3 className="text-2xl text-white mb-4">
-              White Light Changes Everything
-            </h3>
-            <p className="text-[#b0b0b0] leading-relaxed mb-4">
-              While colored light is impressive, the real breakthrough is
-              <span className="text-white font-medium"> white light</span>.
-              Achieving efficient, stable white emission from a printable light source — all from a surface thinner than a sheet of paper — unlocks applications that were previously impossible.
-            </p>
-            <p className="text-[#b0b0b0] leading-relaxed">
-              General illumination. Reading lights. Display backlights.
+              From white light the LEC technology can produce any color across the entire visible spectrum. Red, green, blue, and everything in between — our materials can be tuned to emit any color you need.
             </p>
           </div>
         </div>

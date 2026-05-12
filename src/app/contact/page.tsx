@@ -31,7 +31,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#050505]">
+    <div className="bg-[var(--background)]">
       {/* Hero */}
       <InViewSection className="min-h-[50dvh] flex flex-col justify-center border-b-section">
         <div className="px-6 lg:px-16 py-24">
@@ -148,7 +148,7 @@ export default function ContactPage() {
                       name="interest"
                       value={formData.interest}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-[#050505] border border-[#1a1a1a] text-white focus:outline-none focus:border-[#253ff6] focus:shadow-[0_0_25px_rgba(255,255,255,0.15),0_0_40px_rgba(37,63,246,0.2)] transition-all duration-300"
+                      className="w-full px-4 py-3 bg-[var(--background)] border border-[#1a1a1a] text-white focus:outline-none focus:border-[#253ff6] focus:shadow-[0_0_25px_rgba(255,255,255,0.15),0_0_40px_rgba(37,63,246,0.2)] transition-all duration-300"
                     >
                       <option value="">Select an option</option>
                       <option value="licensing">Technology Licensing</option>
@@ -209,8 +209,8 @@ export default function ContactPage() {
                   <p className="tech-label mb-3">Address</p>
                   <p className="text-[#b0b0b0] leading-relaxed">
                     LunaLEC AB<br />
-                    Linnaeus väg 8C<br />
-                    907 36 Umeå<br />
+                    Linnaeus väg 24<br />
+                    901 87 Umeå<br />
                     Sweden
                   </p>
                 </div>

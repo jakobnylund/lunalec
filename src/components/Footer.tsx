@@ -10,7 +10,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#050505] border-t-section">
+    <footer className="bg-[var(--background)] border-t-section">
       {/* Main grid mirrors the page index/content split */}
       <div className="grid grid-cols-1 lg:grid-cols-3">
         {/* Brand — occupies the index column, matches "Our Story / Origin" width */}
@@ -73,8 +73,8 @@ export default function Footer() {
             <p className="tech-label mb-6">Location</p>
             <address className="text-sm text-[#b0b0b0] not-italic leading-relaxed">
               LunaLEC AB<br />
-              Linnaeus väg 8C<br />
-              907 36 Umeå<br />
+              Linnaeus väg 24<br />
+              901 87 Umeå<br />
               Sweden
             </address>
           </div>

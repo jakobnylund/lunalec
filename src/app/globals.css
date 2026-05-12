@@ -50,9 +50,9 @@
 }
 
 :root {
-  --background: #050505;
-  --surface: #0a0a0a;
-  --surface-elevated: #111111;
+  --background: color-mix(in srgb, var(--accent) 6%, #050505);
+  --surface: color-mix(in srgb, var(--accent) 7%, #0a0a0a);
+  --surface-elevated: color-mix(in srgb, var(--accent) 9%, #111111);
   --accent: #4c2ee5;
   --accent-purple: #9B7BE5;
   --accent-pink: #C57BDB;

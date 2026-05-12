@@ -10,7 +10,7 @@ import { useTheme } from "@/context/ThemeContext";
 const team = [
   { name: "Christian Larsen", role: "CTO", email: "christian@lunalec.com" },
   { name: "Henrik Lundgren", role: "Business Development", email: "henrik@lunalec.com" },
-  { name: "Erik Zäll", role: "Senior Research Engineer", email: "erik@lunalec.com" },
+  { name: "Erik Zäll", role: "COO", email: "erik@lunalec.com" },
 ];
 
 const values = [
@@ -24,7 +24,7 @@ export default function AboutPage() {
   const { isLight } = useTheme();
 
   return (
-    <div className="bg-[#050505]">
+    <div className="bg-[var(--background)]">
       {/* Hero */}
       <InViewSection className="min-h-[60dvh] flex flex-col justify-center border-b-section overflow-hidden" hoverClassName="group group/hero">
         {/* Background Map - visible at 20%, more visible on hover */}
@@ -221,8 +221,8 @@ export default function AboutPage() {
                 <p className="tech-label mb-4">Address</p>
                 <p className="text-[#b0b0b0] leading-relaxed mb-6">
                   LunaLEC AB<br />
-                  Linnaeus väg 8C<br />
-                  907 36 Umeå<br />
+                  Linnaeus väg 24<br />
+                  901 87 Umeå<br />
                   Sweden
                 </p>
               </FadeIn>
