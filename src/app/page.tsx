@@ -36,12 +36,19 @@ export default function Home() {
             priority
           />
           {/* Gradient overlay for text readability */}
-          {!isLight && (
+          {!isLight ? (
             <>
               {/* Mobile: vertical fade from top so headline stays readable over centered strip */}
               <div className="md:hidden absolute inset-0 bg-gradient-to-b from-[var(--background)] via-[#050505]/70 to-[#050505]/30 transition-opacity duration-500 group-hover/hero:opacity-60" />
               {/* Desktop: horizontal fade — strip on right, text on left */}
               <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#050505]/70 via-[#050505]/30 to-transparent transition-opacity duration-500 group-hover/hero:opacity-40" />
+            </>
+          ) : (
+            <>
+              {/* Light mode mobile: vertical white fade so the dark card doesn't crash the text */}
+              <div className="md:hidden absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/30 transition-opacity duration-500 group-hover/hero:opacity-60" />
+              {/* Light mode desktop: horizontal white fade from text side */}
+              <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent transition-opacity duration-500 group-hover/hero:opacity-50" />
             </>
           )}
         </div>

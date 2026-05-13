@@ -18,7 +18,7 @@ export default function TechnologyPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={isLight ? "/sheet-light.jpg" : "/lunalec-tech.jpg"}
+            src="/lunalec-tech.jpg"
             alt="LunaLEC technology — printed LEC stack"
             fill
             sizes="100vw"
