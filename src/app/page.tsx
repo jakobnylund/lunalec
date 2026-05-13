@@ -19,8 +19,8 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           {/* Mobile portrait crop */}
           <Image
-            src={isLight ? "/header-light.jpg" : "/lunalec-strip-mobile.jpg"}
-            alt="LEC strip with glowing LunaLEC components on a printed flexible substrate"
+            src={isLight ? "/header-light.jpg" : "/lec/hero-card.jpg"}
+            alt="Smart card with integrated LEC-powered logo glowing"
             fill
             sizes="100vw"
             className="md:hidden object-cover object-center transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/hero:scale-[1.04]"
@@ -28,8 +28,8 @@ export default function Home() {
           />
           {/* Desktop landscape crop */}
           <Image
-            src={isLight ? "/header-light.jpg" : "/lunalec-strip.jpg"}
-            alt="LEC strip with glowing LunaLEC components on a printed flexible substrate"
+            src={isLight ? "/header-light.jpg" : "/lec/hero-card.jpg"}
+            alt="Smart card with integrated LEC-powered logo glowing"
             fill
             sizes="100vw"
             className="hidden md:block object-cover object-right transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/hero:scale-[1.04]"
