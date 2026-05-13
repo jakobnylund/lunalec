@@ -180,7 +180,7 @@ export default function ColorPicker() {
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(position ?? DEFAULT_POSITION)}
-        className="relative h-16 cursor-ew-resize select-none focus:outline-none focus:ring-2 focus:ring-white/40"
+        className="relative h-16 cursor-ew-resize select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         onKeyDown={(e) => {

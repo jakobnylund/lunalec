@@ -83,7 +83,11 @@ export default function Home() {
             { label: "Materials", value: "Sustainable" },
           ].map((stat, i) => (
             <FadeIn key={stat.label} delay={0.4 + i * 0.1}>
-              <div className={`group/card px-6 lg:px-12 py-6 ${i > 0 ? "border-l border-[#1a1a1a]" : ""} cell-glow`}>
+              <div
+                className={`group/card px-6 lg:px-12 py-6 cell-glow border-[#1a1a1a] ${
+                  i % 2 === 1 ? "border-l" : i > 0 ? "lg:border-l" : ""
+                } ${i >= 2 ? "border-t lg:border-t-0" : ""}`}
+              >
                 <p className="tech-label mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{stat.label}</p>
                 <p className="mono text-base text-white transition-colors duration-300 group-hover/card:!text-[#050505]">{stat.value}</p>
               </div>

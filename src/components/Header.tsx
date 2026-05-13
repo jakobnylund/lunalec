@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/95 backdrop-blur-sm border-b-section">
-      <nav className="grid grid-cols-3 items-stretch h-24 lg:h-32 relative z-10">
+      <nav className="grid grid-cols-[6rem_1fr] lg:grid-cols-3 items-stretch h-24 lg:h-32 relative z-10">
         {/* Logo cell — left 1/3, padding matches page index column */}
         <Link
           href="/"
@@ -66,10 +66,10 @@ export default function Header() {
           })}
         </div>
 
-        {/* Mobile Menu Button — fills right 2/3 on mobile */}
+        {/* Mobile Menu Button — fills the remaining track on mobile */}
         <button
           type="button"
-          className="md:hidden col-span-2 flex items-center justify-end px-6 text-[#b0b0b0] hover:text-white"
+          className="md:hidden flex items-center justify-end px-6 text-[#b0b0b0] hover:text-white"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenuOpen}

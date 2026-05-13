@@ -172,7 +172,7 @@ export default function AboutPage() {
 
           {/* Values */}
           <div className="lg:col-span-2 bg-[#0a0a0a] flex flex-col">
-            <div className="px-6 lg:px-16 pt-16 lg:pt-24 pb-10">
+            <div className="px-6 lg:px-12 pt-16 lg:pt-24 pb-10">
               <FadeIn>
                 <p className="tech-label mb-2">What We Believe</p>
                 <p className="section-title">Values</p>
