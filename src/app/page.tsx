@@ -75,7 +75,7 @@ export default function Home() {
         </div>
 
         {/* Bottom stats bar */}
-        <div className="border-t border-[#1a1a1a] grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 relative z-10 bg-[var(--background)]">
+        <div className="border-t border-[#1a1a1a] grid grid-cols-2 lg:grid-cols-4 relative z-10 bg-[var(--background)]">
           {[
             { label: "Manufacturing", value: "Printable" },
             { label: "Emission pattern", value: "Customizable" },
