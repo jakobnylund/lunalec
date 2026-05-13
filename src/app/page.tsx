@@ -19,7 +19,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           {/* Mobile portrait crop */}
           <Image
-            src={isLight ? "/header-light.jpg" : "/lec/hero-card.jpg"}
+            src={isLight ? "/lec/hero-card-light.jpg" : "/lec/hero-card.jpg"}
             alt="Smart card with integrated LEC-powered logo glowing"
             fill
             sizes="100vw"
@@ -28,7 +28,7 @@ export default function Home() {
           />
           {/* Desktop landscape crop */}
           <Image
-            src={isLight ? "/header-light.jpg" : "/lec/hero-card.jpg"}
+            src={isLight ? "/lec/hero-card-light.jpg" : "/lec/hero-card.jpg"}
             alt="Smart card with integrated LEC-powered logo glowing"
             fill
             sizes="100vw"
