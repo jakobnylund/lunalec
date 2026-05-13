@@ -588,17 +588,38 @@ section.group:hover .border-t {
   background-color: var(--background);
 }
 
-/* Hero gradient overlay for light mode */
-.light-mode .from-\[\#050505\] {
+/* Hero gradient overlay for light mode — fade light backdrop over images */
+.light-mode .from-\[\#050505\],
+.light-mode .via-\[\#050505\],
+.light-mode .to-\[\#050505\] {
   --tw-gradient-from: #f8faff;
+  --tw-gradient-via: #f8faff;
+  --tw-gradient-to: #f8faff;
+}
+.light-mode .from-\[\#050505\]\/30 { --tw-gradient-from: rgba(248, 250, 255, 0.3) !important; }
+.light-mode .from-\[\#050505\]\/40 { --tw-gradient-from: rgba(248, 250, 255, 0.4) !important; }
+.light-mode .from-\[\#050505\]\/70 { --tw-gradient-from: rgba(248, 250, 255, 0.7) !important; }
+.light-mode .from-\[\#050505\]\/80 { --tw-gradient-from: rgba(248, 250, 255, 0.8) !important; }
+.light-mode .from-\[\#050505\]\/90 { --tw-gradient-from: rgba(248, 250, 255, 0.9) !important; }
+.light-mode .via-\[\#050505\]\/30 { --tw-gradient-via: rgba(248, 250, 255, 0.3) !important; }
+.light-mode .via-\[\#050505\]\/40 { --tw-gradient-via: rgba(248, 250, 255, 0.4) !important; }
+.light-mode .via-\[\#050505\]\/70 { --tw-gradient-via: rgba(248, 250, 255, 0.7) !important; }
+.light-mode .via-\[\#050505\]\/80 { --tw-gradient-via: rgba(248, 250, 255, 0.8) !important; }
+.light-mode .via-\[\#050505\]\/90 { --tw-gradient-via: rgba(248, 250, 255, 0.9) !important; }
+.light-mode .to-\[\#050505\]\/30 { --tw-gradient-to: rgba(248, 250, 255, 0.3) !important; }
+.light-mode .to-\[\#050505\]\/40 { --tw-gradient-to: rgba(248, 250, 255, 0.4) !important; }
+.light-mode .to-\[\#050505\]\/70 { --tw-gradient-to: rgba(248, 250, 255, 0.7) !important; }
+.light-mode .to-\[\#050505\]\/80 { --tw-gradient-to: rgba(248, 250, 255, 0.8) !important; }
+
+/* Extra surface tones in light mode */
+.light-mode .bg-\[\#0e0e0e\],
+.light-mode .bg-\[\#111111\] {
+  background-color: var(--surface-elevated);
 }
 
-.light-mode .via-\[\#050505\]\/90 {
-  --tw-gradient-via: rgba(248, 250, 255, 0.9);
-}
-
-.light-mode .to-\[\#050505\]\/40 {
-  --tw-gradient-to: rgba(248, 250, 255, 0.4);
+/* Extra text tones in light mode */
+.light-mode .text-\[\#a1a1a1\] {
+  color: var(--text-secondary);
 }
 
 /* ============================================
