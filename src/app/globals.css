@@ -361,11 +361,11 @@ input:focus, textarea:focus, select:focus {
 
 /* Border colors */
 .light-mode .border-\[\#1a1a1a\] {
-  border-color: var(--border);
+  border-color: var(--border-subtle);
 }
 
 .light-mode .border-\[\#2a2a2a\] {
-  border-color: #a8b8d8;
+  border-color: var(--border);
 }
 
 /* Text colors */
