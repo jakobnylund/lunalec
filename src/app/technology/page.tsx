@@ -352,11 +352,11 @@ export default function TechnologyPage() {
           </div>
 
           {/* Right — link grid matching site grammar */}
-          <div className="grid grid-cols-1 sm:grid-cols-2">
+          <div className="grid grid-cols-1 xl:grid-cols-2">
             <FadeIn delay={0.15} className="h-full">
               <Link
                 href="/#applications"
-                className="group/card block h-full px-6 lg:px-12 py-12 border-b sm:border-b-0 sm:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
+                className="group/card block h-full px-6 lg:px-12 py-12 border-b xl:border-b-0 xl:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
               >
                 <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Explore</p>
                 <p className="arrow-link text-white text-xl transition-colors duration-300 group-hover/card:!text-[#050505]">
