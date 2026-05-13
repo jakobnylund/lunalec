@@ -58,7 +58,7 @@ export default function Footer() {
                 info@lunalec.com
               </a>
               <a
-                href="https://linkedin.com/company/lunalec"
+                href="https://se.linkedin.com/company/lunalec-ab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[#b0b0b0] hover:text-white transition-colors"

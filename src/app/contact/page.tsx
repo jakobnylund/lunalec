@@ -228,7 +228,7 @@ export default function ContactPage() {
 
               <FadeIn delay={0.25}>
                 <a
-                  href="https://linkedin.com/company/lunalec"
+                  href="https://se.linkedin.com/company/lunalec-ab"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group/card block px-6 lg:px-12 py-10 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full"
