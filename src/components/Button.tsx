@@ -23,7 +23,7 @@ export default function Button({
     "inline-flex items-center justify-center font-medium transition-all duration-300 active:scale-[0.98] active:translate-y-[1px]";
 
   const variants = {
-    primary: "bg-accent text-[#050505] hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.6),0_0_80px_var(--accent)] hover:scale-[1.02]",
+    primary: "bg-accent text-[var(--accent-foreground)] hover:bg-white hover:text-[#050505] hover:shadow-[0_0_40px_rgba(255,255,255,0.6),0_0_80px_var(--accent)] hover:scale-[1.02]",
     secondary: "bg-[#1a1a1a] text-white hover:bg-white hover:text-[#050505] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] hover:scale-[1.02]",
     ghost: "text-[#888] hover:text-white border border-transparent hover:border-white",
   };

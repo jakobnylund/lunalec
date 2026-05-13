@@ -54,6 +54,7 @@
   --surface: color-mix(in srgb, var(--accent) 7%, #0a0a0a);
   --surface-elevated: color-mix(in srgb, var(--accent) 9%, #111111);
   --accent: #4c2ee5;
+  --accent-foreground: #ffffff;
   --accent-purple: #9B7BE5;
   --accent-pink: #C57BDB;
   --text-primary: #ffffff;
@@ -187,6 +188,11 @@ section.group:hover .dot-grid {
   border-color: var(--border);
 }
 
+/* Hairline dividers — accent-tinted gray so they're readable but not harsh */
+.border-\[\#1a1a1a\] {
+  border-color: color-mix(in srgb, var(--accent) 14%, #2f2f2f);
+}
+
 /* Section dividers - thick borders for major sections (tinted with accent) */
 .border-section {
   border-color: color-mix(in srgb, var(--accent) 14%, #2a2a2a);
@@ -215,7 +221,7 @@ section.group:hover .dot-grid {
 .light-mode .border-b-section,
 .light-mode .border-l-section,
 .light-mode .border-r-section {
-  border-color: #b8c7e0;
+  border-color: color-mix(in srgb, var(--accent) 18%, #c8c8c8);
 }
 
 /* Section index styling */
@@ -316,17 +322,17 @@ input:focus, textarea:focus, select:focus {
   background: var(--text-tertiary);
 }
 
-/* Light mode - blue-tinted palette */
+/* Light mode - near-white palette with a faint accent tint */
 .light-mode {
-  --background: #f8faff;
-  --surface: #eef2fb;
-  --surface-elevated: #e4eaf8;
-  --text-primary: #0a1628;
-  --text-secondary: #3d4f6f;
-  --text-tertiary: #5a6d8a;
-  --border: #c5d0e6;
-  --border-subtle: #dce4f2;
-  --foreground: #0a1628;
+  --background: color-mix(in srgb, var(--accent) 3%, #fbfbfb);
+  --surface: color-mix(in srgb, var(--accent) 4%, #f5f5f5);
+  --surface-elevated: color-mix(in srgb, var(--accent) 6%, #eeeeee);
+  --text-primary: #1a1a1a;
+  --text-secondary: #4d4d4d;
+  --text-tertiary: #7a7a7a;
+  --border: color-mix(in srgb, var(--accent) 14%, #d0d0d0);
+  --border-subtle: color-mix(in srgb, var(--accent) 10%, #e2e2e2);
+  --foreground: #1a1a1a;
 }
 
 .light-mode body {
@@ -348,24 +354,24 @@ input:focus, textarea:focus, select:focus {
 }
 
 .light-mode .bg-\[\#151515\] {
-  background-color: #dde5f5;
+  background-color: var(--surface-elevated);
 }
 
 .light-mode .bg-\[\#050505\]\/95 {
-  background-color: rgba(248, 250, 255, 0.95);
+  background-color: color-mix(in srgb, var(--accent) 3%, rgba(251, 251, 251, 0.95));
 }
 
 .light-mode .bg-\[\#050505\]\/50 {
-  background-color: rgba(248, 250, 255, 0.5);
+  background-color: color-mix(in srgb, var(--accent) 3%, rgba(251, 251, 251, 0.5));
 }
 
 /* Border colors */
 .light-mode .border-\[\#1a1a1a\] {
-  border-color: var(--border-subtle);
+  border-color: color-mix(in srgb, var(--accent) 14%, #e8e8e8) !important;
 }
 
 .light-mode .border-\[\#2a2a2a\] {
-  border-color: var(--border);
+  border-color: color-mix(in srgb, var(--accent) 18%, #d0d0d0) !important;
 }
 
 /* Text colors */
@@ -387,25 +393,25 @@ input:focus, textarea:focus, select:focus {
 }
 
 .light-mode .text-\[\#444\] {
-  color: #4a5d7a;
+  color: #4d4d4d;
 }
 
 .light-mode .text-\[\#666\] {
-  color: #5a6d8a;
+  color: #6a6a6a;
 }
 
 /* Placeholder text */
 .light-mode .placeholder-\[\#555\]::placeholder {
-  color: #7a8ba8;
+  color: #909090;
 }
 
 /* Hover backgrounds */
 .light-mode .hover\:bg-\[\#0a0a0a\]:hover {
-  background-color: #e4eaf8;
+  background-color: var(--surface-elevated);
 }
 
 .light-mode .hover\:bg-\[\#151515\]:hover {
-  background-color: #dde5f5;
+  background-color: var(--surface-elevated);
 }
 
 /* Enhanced hover glow - full power light effect on cells */
@@ -520,12 +526,12 @@ section.group:hover .border-t {
 }
 
 .light-mode ::-webkit-scrollbar-thumb:hover {
-  background: #8a9bba;
+  background: #8a8a8a;
 }
 
 /* Header background */
 .light-mode header {
-  background-color: rgba(248, 250, 255, 0.95) !important;
+  background-color: color-mix(in srgb, var(--accent) 3%, rgba(251, 251, 251, 0.95)) !important;
 }
 
 /* Menu hover in light mode - accent color background, no glow */
@@ -561,21 +567,21 @@ section.group:hover .border-t {
 
 /* Ghost button in light mode */
 .light-mode .text-\[\#888\] {
-  color: #5a6d8a;
+  color: #6a6a6a;
 }
 
 /* Secondary button in light mode */
 .light-mode .bg-\[\#1a1a1a\] {
-  background-color: #e4eaf8;
+  background-color: var(--surface-elevated);
 }
 
 .light-mode .border-\[\#333\] {
-  border-color: #b8c7e0;
+  border-color: var(--border);
 }
 
 /* Mobile menu */
 .light-mode .bg-\[\#333\] {
-  background-color: #dde5f5;
+  background-color: var(--surface-elevated);
 }
 
 /* Select dropdown in light mode */
@@ -592,24 +598,24 @@ section.group:hover .border-t {
 .light-mode .from-\[\#050505\],
 .light-mode .via-\[\#050505\],
 .light-mode .to-\[\#050505\] {
-  --tw-gradient-from: #f8faff;
-  --tw-gradient-via: #f8faff;
-  --tw-gradient-to: #f8faff;
+  --tw-gradient-from: var(--background);
+  --tw-gradient-via: var(--background);
+  --tw-gradient-to: var(--background);
 }
-.light-mode .from-\[\#050505\]\/30 { --tw-gradient-from: rgba(248, 250, 255, 0.3) !important; }
-.light-mode .from-\[\#050505\]\/40 { --tw-gradient-from: rgba(248, 250, 255, 0.4) !important; }
-.light-mode .from-\[\#050505\]\/70 { --tw-gradient-from: rgba(248, 250, 255, 0.7) !important; }
-.light-mode .from-\[\#050505\]\/80 { --tw-gradient-from: rgba(248, 250, 255, 0.8) !important; }
-.light-mode .from-\[\#050505\]\/90 { --tw-gradient-from: rgba(248, 250, 255, 0.9) !important; }
-.light-mode .via-\[\#050505\]\/30 { --tw-gradient-via: rgba(248, 250, 255, 0.3) !important; }
-.light-mode .via-\[\#050505\]\/40 { --tw-gradient-via: rgba(248, 250, 255, 0.4) !important; }
-.light-mode .via-\[\#050505\]\/70 { --tw-gradient-via: rgba(248, 250, 255, 0.7) !important; }
-.light-mode .via-\[\#050505\]\/80 { --tw-gradient-via: rgba(248, 250, 255, 0.8) !important; }
-.light-mode .via-\[\#050505\]\/90 { --tw-gradient-via: rgba(248, 250, 255, 0.9) !important; }
-.light-mode .to-\[\#050505\]\/30 { --tw-gradient-to: rgba(248, 250, 255, 0.3) !important; }
-.light-mode .to-\[\#050505\]\/40 { --tw-gradient-to: rgba(248, 250, 255, 0.4) !important; }
-.light-mode .to-\[\#050505\]\/70 { --tw-gradient-to: rgba(248, 250, 255, 0.7) !important; }
-.light-mode .to-\[\#050505\]\/80 { --tw-gradient-to: rgba(248, 250, 255, 0.8) !important; }
+.light-mode .from-\[\#050505\]\/30 { --tw-gradient-from: rgba(251, 251, 251, 0.3) !important; }
+.light-mode .from-\[\#050505\]\/40 { --tw-gradient-from: rgba(251, 251, 251, 0.4) !important; }
+.light-mode .from-\[\#050505\]\/70 { --tw-gradient-from: rgba(251, 251, 251, 0.7) !important; }
+.light-mode .from-\[\#050505\]\/80 { --tw-gradient-from: rgba(251, 251, 251, 0.8) !important; }
+.light-mode .from-\[\#050505\]\/90 { --tw-gradient-from: rgba(251, 251, 251, 0.9) !important; }
+.light-mode .via-\[\#050505\]\/30 { --tw-gradient-via: rgba(251, 251, 251, 0.3) !important; }
+.light-mode .via-\[\#050505\]\/40 { --tw-gradient-via: rgba(251, 251, 251, 0.4) !important; }
+.light-mode .via-\[\#050505\]\/70 { --tw-gradient-via: rgba(251, 251, 251, 0.7) !important; }
+.light-mode .via-\[\#050505\]\/80 { --tw-gradient-via: rgba(251, 251, 251, 0.8) !important; }
+.light-mode .via-\[\#050505\]\/90 { --tw-gradient-via: rgba(251, 251, 251, 0.9) !important; }
+.light-mode .to-\[\#050505\]\/30 { --tw-gradient-to: rgba(251, 251, 251, 0.3) !important; }
+.light-mode .to-\[\#050505\]\/40 { --tw-gradient-to: rgba(251, 251, 251, 0.4) !important; }
+.light-mode .to-\[\#050505\]\/70 { --tw-gradient-to: rgba(251, 251, 251, 0.7) !important; }
+.light-mode .to-\[\#050505\]\/80 { --tw-gradient-to: rgba(251, 251, 251, 0.8) !important; }
 
 /* Extra surface tones in light mode */
 .light-mode .bg-\[\#0e0e0e\],

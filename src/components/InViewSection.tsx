@@ -66,7 +66,7 @@ export default function InViewSection({
   // Light mode: static sections without hover effects
   if (isLight) {
     return (
-      <section id={id} className={className}>
+      <section id={id} className={`${className} relative overflow-hidden`}>
         {children}
       </section>
     );
