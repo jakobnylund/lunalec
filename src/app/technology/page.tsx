@@ -18,8 +18,8 @@ export default function TechnologyPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={isLight ? "/sheet-light.jpg" : "/lec/tile-curve-hero.jpg"}
-            alt="Flexible LEC tile band glowing yellow, held in hand"
+            src={isLight ? "/sheet-light.jpg" : "/lunalec-strip.jpg"}
+            alt="LEC strip with glowing LunaLEC components on a printed flexible substrate"
             fill
             sizes="100vw"
             className="object-cover"
@@ -356,13 +356,13 @@ export default function TechnologyPage() {
             <FadeIn delay={0.15} className="h-full">
               <Link
                 href="/#applications"
-                className="group/card block h-full px-6 lg:px-12 py-12 border-b xl:border-b-0 xl:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
+                className="group/card flex flex-col h-full px-6 lg:px-12 py-12 border-b xl:border-b-0 xl:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
               >
                 <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Explore</p>
-                <p className="arrow-link text-white text-xl transition-colors duration-300 group-hover/card:!text-[#050505]">
-                  See Applications
+                <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
+                  See Applications <span className="inline-block transition-transform duration-300 group-hover/card:translate-x-1">→</span>
                 </p>
-                <p className="text-sm text-[#808080] mt-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
+                <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">
                   Smart cards, packaging, security, and more
                 </p>
               </Link>
@@ -370,13 +370,13 @@ export default function TechnologyPage() {
             <FadeIn delay={0.25} className="h-full">
               <Link
                 href="/contact#collaboration"
-                className="group/card block h-full px-6 lg:px-12 py-12 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
+                className="group/card flex flex-col h-full px-6 lg:px-12 py-12 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
               >
                 <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Partner</p>
-                <p className="arrow-link text-white text-xl transition-colors duration-300 group-hover/card:!text-[#050505]">
-                  Collaboration Options
+                <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
+                  Collaboration Options <span className="inline-block transition-transform duration-300 group-hover/card:translate-x-1">→</span>
                 </p>
-                <p className="text-sm text-[#808080] mt-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
+                <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">
                   Licensing, joint development, OEM supply
                 </p>
               </Link>
