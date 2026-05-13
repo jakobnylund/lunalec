@@ -174,9 +174,30 @@ export default function ColorPicker() {
       {/* Spectrum bar - full width */}
       <div
         ref={barRef}
-        className="relative h-16 cursor-crosshair select-none"
+        role="slider"
+        tabIndex={0}
+        aria-label="Choose your light color"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(position ?? DEFAULT_POSITION)}
+        className="relative h-16 cursor-ew-resize select-none focus:outline-none focus:ring-2 focus:ring-white/40"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+            e.preventDefault();
+            setPosition((p) => Math.max(0, (p ?? DEFAULT_POSITION) - (e.shiftKey ? 10 : 2)));
+          } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+            e.preventDefault();
+            setPosition((p) => Math.min(100, (p ?? DEFAULT_POSITION) + (e.shiftKey ? 10 : 2)));
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            setPosition(0);
+          } else if (e.key === "End") {
+            e.preventDefault();
+            setPosition(100);
+          }
+        }}
         style={{
           background: `linear-gradient(to right,
             #7f00ff 0%,

@@ -53,7 +53,7 @@ export default function Home() {
               <p className="tech-label mb-8">Light-emitting Electrochemical Cells</p>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.9] tracking-tighter text-white mb-8">
+              <h1 className="text-[clamp(2.75rem,7vw,5rem)] leading-[0.9] tracking-tighter text-white mb-8">
                 Printed
                 <br />
                 <span className="text-[#253ff6]">Light</span>
@@ -83,7 +83,7 @@ export default function Home() {
             { label: "Materials", value: "Sustainable" },
           ].map((stat, i) => (
             <FadeIn key={stat.label} delay={0.4 + i * 0.1}>
-              <div className={`group/card px-6 py-6 ${i === 0 ? "lg:pl-16" : ""} ${i > 0 ? "border-l border-[#1a1a1a]" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300`}>
+              <div className={`group/card px-6 lg:px-12 py-6 ${i > 0 ? "border-l border-[#1a1a1a]" : ""} cell-glow`}>
                 <p className="tech-label mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{stat.label}</p>
                 <p className="mono text-base text-white transition-colors duration-300 group-hover/card:!text-[#050505]">{stat.value}</p>
               </div>
@@ -180,7 +180,7 @@ export default function Home() {
               },
             ].map((app, i) => (
               <FadeIn key={app.title} delay={i * 0.08}>
-                <div className={`group/card px-6 lg:px-10 py-10 border-b border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer h-full flex flex-col`}>
+                <div className={`group/card px-6 lg:px-10 py-10 border-b border-[#1a1a1a] cell-glow cursor-pointer h-full flex flex-col`}>
                   <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">{app.eyebrow}</p>
                   <p className="text-white text-2xl mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.title}</p>
                   <p className="text-base text-[#b0b0b0] leading-relaxed mb-6 transition-colors duration-300 group-hover/card:!text-[#050505]">{app.desc}</p>
@@ -188,7 +188,7 @@ export default function Home() {
                     <div className="mt-auto">
                       <Link
                         href={app.cta.href}
-                        className="inline-block mono text-sm uppercase tracking-wide text-[#253ff6] border border-[#253ff6] px-5 py-3 hover:bg-[#253ff6] hover:text-white transition-all duration-300 group-hover/card:!border-[#050505] group-hover/card:!text-[#050505] group-hover/card:hover:!bg-[#050505] group-hover/card:hover:!text-white"
+                        className="inline-block text-base text-[#253ff6] border border-[#253ff6] px-5 py-3 hover:bg-[#253ff6] hover:text-white transition-all duration-300 group-hover/card:!border-[#050505] group-hover/card:!text-[#050505] group-hover/card:hover:!bg-[#050505] group-hover/card:hover:!text-white"
                       >
                         {app.cta.label}
                       </Link>
@@ -210,7 +210,7 @@ export default function Home() {
       </InViewSection>
 
       {/* Divider — flexible LEC band */}
-      <section className="relative h-[60vh] md:h-[80vh] border-b-section overflow-hidden group/divider">
+      <section className="hero-overlay relative h-[60vh] md:h-[80vh] border-b-section overflow-hidden group/divider">
         <Image
           src="/lec/divider-home.jpg"
           alt="Flexible LEC tile band glowing yellow, held in hand"
@@ -218,7 +218,7 @@ export default function Home() {
           sizes="100vw"
           className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/divider:scale-[1.04]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-transparent to-[var(--background)] transition-opacity duration-500 group-hover/divider:opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505] transition-opacity duration-500 group-hover/divider:opacity-60" />
       </section>
 
       {/* Origin */}

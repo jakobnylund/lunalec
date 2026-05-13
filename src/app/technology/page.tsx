@@ -14,7 +14,7 @@ export default function TechnologyPage() {
   return (
     <div className="bg-[var(--background)]">
       {/* Hero */}
-      <section className="min-h-[60dvh] flex flex-col justify-center border-b-section relative group/hero overflow-hidden">
+      <section className="min-h-[55dvh] flex flex-col justify-center border-b-section relative group/hero overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -27,7 +27,7 @@ export default function TechnologyPage() {
           />
           {/* Gradient overlay for text readability */}
           {!isLight && (
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent transition-opacity duration-500 group-hover/hero:opacity-60" />
           )}
         </div>
 
@@ -206,7 +206,7 @@ export default function TechnologyPage() {
               { value: "Print", label: "Manufacturing", sub: "Inkjet & screen printing" },
             ].map((spec, i) => (
               <FadeIn key={spec.label} delay={i * 0.08}>
-                <div className={`group/card h-full px-6 py-12 border-b border-[#1a1a1a] ${i % 2 === 1 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} ${i % 4 === 0 ? "md:border-l-0" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300`}>
+                <div className={`group/card h-full px-6 py-12 border-b border-[#1a1a1a] ${i % 2 === 1 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} ${i % 4 === 0 ? "md:border-l-0" : ""} cell-glow`}>
                   <p className="mono text-3xl md:text-4xl text-[#253ff6] mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
                     {spec.value}
                   </p>
@@ -220,7 +220,7 @@ export default function TechnologyPage() {
       </InViewSection>
 
       {/* Spectrum divider */}
-      <section className="relative h-[55vh] md:h-[70vh] border-b-section overflow-hidden group/spectrum">
+      <section className="hero-overlay relative h-[55vh] md:h-[70vh] border-b-section overflow-hidden group/spectrum">
         <Image
           src="/lec/spectrum-bg.jpg"
           alt="LunaLEC team member in the lab"
@@ -228,7 +228,7 @@ export default function TechnologyPage() {
           sizes="100vw"
           className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/spectrum:scale-[1.04]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--background)] via-transparent to-[var(--background)] opacity-90 group-hover/spectrum:opacity-70 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-90 group-hover/spectrum:opacity-70 transition-opacity duration-500" />
         <div className="absolute inset-0 flex items-end">
           <div className="px-6 lg:px-16 py-12 lg:py-16 max-w-3xl">
             <FadeIn>
@@ -271,7 +271,7 @@ export default function TechnologyPage() {
               },
             ].map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.1} className="h-full">
-                <div className={`group/card px-6 py-12 border-b h-full ${i > 0 ? "md:border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                <div className={`group/card px-6 py-12 border-b h-full ${i > 0 ? "md:border-l" : ""} border-[#1a1a1a] cell-glow cursor-pointer`}>
                   <p className="text-white mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{item.title}</p>
                   <p className="text-base text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{item.desc}</p>
                 </div>
@@ -356,7 +356,7 @@ export default function TechnologyPage() {
             <FadeIn delay={0.15} className="h-full">
               <Link
                 href="/#applications"
-                className="group/card flex flex-col h-full px-6 lg:px-12 py-12 border-b xl:border-b-0 xl:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
+                className="group/card flex flex-col h-full px-6 lg:px-12 py-12 border-b xl:border-b-0 xl:border-r border-[#1a1a1a] cell-glow"
               >
                 <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Explore</p>
                 <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
@@ -370,7 +370,7 @@ export default function TechnologyPage() {
             <FadeIn delay={0.25} className="h-full">
               <Link
                 href="/contact#collaboration"
-                className="group/card flex flex-col h-full px-6 lg:px-12 py-12 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
+                className="group/card flex flex-col h-full px-6 lg:px-12 py-12 cell-glow"
               >
                 <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Partner</p>
                 <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">

@@ -26,16 +26,17 @@ export default function AboutPage() {
   return (
     <div className="bg-[var(--background)]">
       {/* Hero */}
-      <InViewSection className="min-h-[60dvh] flex flex-col justify-center border-b-section overflow-hidden" hoverClassName="group group/hero">
+      <InViewSection className="min-h-[55dvh] flex flex-col justify-center border-b-section overflow-hidden" hoverClassName="group group/hero">
         {/* Background Map - visible at 20%, more visible on hover */}
         <div className="absolute inset-[-50%] opacity-20 group-hover/hero:opacity-40 transition-opacity duration-500 z-0 grayscale invert brightness-[0.7] contrast-200">
           <iframe
+            title="Map of Umeå, Sweden — LunaLEC headquarters"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54889.85073088441!2d20.225089!3d63.825848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c4e1b68add7f9%3A0x4034506de8c8560!2sUme%C3%A5%2C%20Sweden!5e0!3m2!1sen!2sus!4v1706900000000!5m2!1sen!2sus"
             className="w-full h-full"
             style={{ border: 0 }}
             allowFullScreen={false}
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer"
           />
         </div>
         {/* Gradient overlay for text readability */}
@@ -138,7 +139,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-3">
               {team.map((person, i) => (
                 <FadeIn key={person.email} delay={i * 0.08} className="h-full">
-                  <div className={`group/card h-full px-6 lg:px-10 py-10 ${i > 0 ? "md:border-l border-[#1a1a1a]" : ""} ${i < team.length - 1 ? "border-b md:border-b-0 border-[#1a1a1a]" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300`}>
+                  <div className={`group/card h-full px-6 lg:px-10 py-10 ${i > 0 ? "md:border-l border-[#1a1a1a]" : ""} ${i < team.length - 1 ? "border-b md:border-b-0 border-[#1a1a1a]" : ""} cell-glow`}>
                     <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">{person.role}</p>
                     <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">{person.name}</p>
                     <a href={`mailto:${person.email}`} className="mono text-sm text-[#253ff6] transition-colors duration-300 group-hover/card:!text-[#050505]">
@@ -180,7 +181,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-[#1a1a1a] flex-1">
               {values.map((value, i) => (
                 <FadeIn key={value.title} delay={0.1 + i * 0.05} className="h-full">
-                  <div className={`group/card h-full px-6 lg:px-12 py-10 border-b border-[#1a1a1a] ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "sm:border-b-0" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                  <div className={`group/card h-full px-6 lg:px-12 py-10 border-b border-[#1a1a1a] ${i % 2 === 1 ? "sm:border-l" : ""} ${i >= 2 ? "sm:border-b-0" : ""} cell-glow cursor-pointer`}>
                     <p className="text-white text-lg mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{value.title}</p>
                     <p className="text-base text-[#808080] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{value.desc}</p>
                   </div>

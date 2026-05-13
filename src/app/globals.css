@@ -25,13 +25,6 @@
   color: var(--accent) !important;
 }
 
-/* Hairline borders inherit a subtle tint from the active accent so the
-   spectrum slider also colors the architectural lines (not just the dots
-   and accent text). */
-.border-\[\#1a1a1a\] {
-  border-color: color-mix(in srgb, var(--accent) 10%, #1a1a1a) !important;
-}
-
 /* Custom accent utility classes */
 .bg-accent {
   background-color: var(--accent);
@@ -149,21 +142,6 @@ select:focus-visible {
   letter-spacing: -0.01em;
 }
 
-/* Grid lines - more subtle */
-.grid-lines {
-  background-image:
-    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
-  background-size: 100px 100px;
-}
-
-.grid-lines-dense {
-  background-image:
-    linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
 /* Dot matrix pattern */
 .dot-grid {
   background-image: radial-gradient(circle, var(--accent) 1px, transparent 1px);
@@ -193,35 +171,35 @@ section.group:hover .dot-grid {
   border-color: color-mix(in srgb, var(--accent) 14%, #2f2f2f);
 }
 
-/* Section dividers - thick borders for major sections (tinted with accent) */
+/* Section dividers - hairline width, tinted with accent (matches inline borders) */
 .border-section {
-  border-color: color-mix(in srgb, var(--accent) 14%, #2a2a2a);
-  border-width: 2px;
+  border-color: color-mix(in srgb, var(--accent) 14%, #2f2f2f);
+  border-width: 1px;
 }
 
 .border-t-section {
-  border-top: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
+  border-top: 1px solid color-mix(in srgb, var(--accent) 14%, #2f2f2f);
 }
 
 .border-b-section {
-  border-bottom: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 14%, #2f2f2f);
 }
 
 .border-l-section {
-  border-left: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
+  border-left: 1px solid color-mix(in srgb, var(--accent) 14%, #2f2f2f);
 }
 
 .border-r-section {
-  border-right: 2px solid color-mix(in srgb, var(--accent) 14%, #2a2a2a);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 14%, #2f2f2f);
 }
 
-/* Light mode thick borders */
+/* Light mode section dividers — match the hairline tone */
 .light-mode .border-section,
 .light-mode .border-t-section,
 .light-mode .border-b-section,
 .light-mode .border-l-section,
 .light-mode .border-r-section {
-  border-color: color-mix(in srgb, var(--accent) 18%, #c8c8c8);
+  border-color: color-mix(in srgb, var(--accent) 14%, #e8e8e8);
 }
 
 /* Section index styling */
@@ -414,25 +392,30 @@ input:focus, textarea:focus, select:focus {
   background-color: var(--surface-elevated);
 }
 
-/* Enhanced hover glow - full power light effect on cells */
-[class*="hover:shadow-\[inset"]:hover {
-  background-color: rgba(255,255,255,0.95) !important;
+/* Cell-glow utility — apply this class on any card/link that should light up on hover. */
+.cell-glow {
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.cell-glow:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
   box-shadow:
-    inset 0 0 100px rgba(255,255,255,1),
-    0 0 40px rgba(255,255,255,0.6),
+    inset 0 0 100px rgba(255, 255, 255, 1),
+    0 0 40px rgba(255, 255, 255, 0.6),
     0 0 80px color-mix(in srgb, var(--accent) 40%, transparent),
     0 0 120px color-mix(in srgb, var(--accent) 25%, transparent) !important;
-  border-color: rgba(255,255,255,0.8) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
 }
 
-/* Text inside lit cells */
-[class*="hover:shadow-\[inset"]:hover p,
-[class*="hover:shadow-\[inset"]:hover span {
+/* Text inside lit cells flips to near-black */
+.cell-glow:hover p,
+.cell-glow:hover span,
+.cell-glow:hover a {
   color: #050505 !important;
 }
 
-/* Exception: keep text white inside elements that turn dark on hover (like number boxes) */
-[class*="hover:shadow-\[inset"]:hover [class*="group-hover/card:bg-\[#050505\]"] span {
+/* Exception: keep text white inside child swatches that turn dark on hover */
+.cell-glow:hover [class*="group-hover/card:bg-\[#050505\]"] span {
   color: white !important;
 }
 
@@ -450,13 +433,6 @@ section.group:hover {
     0 0 60px color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
-/* Left sidebar/index area gets stronger glow on section hover */
-section.group:hover .lg\:border-r {
-  background-color: color-mix(in srgb, var(--accent) 12%, transparent) !important;
-  box-shadow:
-    inset 0 0 80px color-mix(in srgb, var(--accent) 15%, transparent) !important;
-}
-
 /* Gray text becomes white on section hover */
 section.group:hover .text-\[\#808080\],
 section.group:hover .text-\[\#b0b0b0\],
@@ -466,17 +442,7 @@ section.group:hover .tech-label {
   transition: color 0.3s ease;
 }
 
-/* Make borders more visible when section is hovered */
-section.group:hover .border-\[\#1a1a1a\] {
-  border-color: rgba(255,255,255,0.25) !important;
-}
-
-section.group:hover .border-r,
-section.group:hover .border-l,
-section.group:hover .border-b,
-section.group:hover .border-t {
-  border-color: rgba(255,255,255,0.25);
-}
+/* Section hover keeps hairline tones consistent — only the background tints */
 
 /* Disable all hover effects on cells/cards in light mode */
 .light-mode [class*="hover:bg-white"]:hover {
@@ -594,28 +560,23 @@ section.group:hover .border-t {
   background-color: var(--background);
 }
 
-/* Hero gradient overlay for light mode — fade light backdrop over images */
-.light-mode .from-\[\#050505\],
-.light-mode .via-\[\#050505\],
-.light-mode .to-\[\#050505\] {
-  --tw-gradient-from: var(--background);
-  --tw-gradient-via: var(--background);
-  --tw-gradient-to: var(--background);
+/* Hero overlays — keep dark gradient fades in both modes so dark image
+   sections (heros, full-bleed dividers) read consistently. Text inside
+   these sections is kept light via .hero-overlay overrides below. */
+
+/* Keep text legible inside .hero-overlay sections (over dark gradient) in light mode */
+.light-mode .hero-overlay .text-white {
+  color: #ffffff !important;
 }
-.light-mode .from-\[\#050505\]\/30 { --tw-gradient-from: rgba(251, 251, 251, 0.3) !important; }
-.light-mode .from-\[\#050505\]\/40 { --tw-gradient-from: rgba(251, 251, 251, 0.4) !important; }
-.light-mode .from-\[\#050505\]\/70 { --tw-gradient-from: rgba(251, 251, 251, 0.7) !important; }
-.light-mode .from-\[\#050505\]\/80 { --tw-gradient-from: rgba(251, 251, 251, 0.8) !important; }
-.light-mode .from-\[\#050505\]\/90 { --tw-gradient-from: rgba(251, 251, 251, 0.9) !important; }
-.light-mode .via-\[\#050505\]\/30 { --tw-gradient-via: rgba(251, 251, 251, 0.3) !important; }
-.light-mode .via-\[\#050505\]\/40 { --tw-gradient-via: rgba(251, 251, 251, 0.4) !important; }
-.light-mode .via-\[\#050505\]\/70 { --tw-gradient-via: rgba(251, 251, 251, 0.7) !important; }
-.light-mode .via-\[\#050505\]\/80 { --tw-gradient-via: rgba(251, 251, 251, 0.8) !important; }
-.light-mode .via-\[\#050505\]\/90 { --tw-gradient-via: rgba(251, 251, 251, 0.9) !important; }
-.light-mode .to-\[\#050505\]\/30 { --tw-gradient-to: rgba(251, 251, 251, 0.3) !important; }
-.light-mode .to-\[\#050505\]\/40 { --tw-gradient-to: rgba(251, 251, 251, 0.4) !important; }
-.light-mode .to-\[\#050505\]\/70 { --tw-gradient-to: rgba(251, 251, 251, 0.7) !important; }
-.light-mode .to-\[\#050505\]\/80 { --tw-gradient-to: rgba(251, 251, 251, 0.8) !important; }
+.light-mode .hero-overlay .text-\[\#b0b0b0\] {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+.light-mode .hero-overlay .text-\[\#808080\] {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.light-mode .hero-overlay .tech-label {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
 
 /* Extra surface tones in light mode */
 .light-mode .bg-\[\#0e0e0e\],
@@ -687,16 +648,7 @@ section.group:hover .border-t {
   transition: color 0.3s ease;
 }
 
-/* Left sidebar glow when section is in view */
-.section-in-view .lg\:border-r {
-  background-color: color-mix(in srgb, var(--accent) 12%, transparent) !important;
-  box-shadow: inset 0 0 80px color-mix(in srgb, var(--accent) 15%, transparent) !important;
-}
-
-/* Border enhancement when section is in view */
-.section-in-view .border-\[\#1a1a1a\] {
-  border-color: rgba(255, 255, 255, 0.25) !important;
-}
+/* Section-in-view keeps hairline tones consistent — only the background tints */
 
 /* Spec card hover - all text turns black on white background */
 .spec-card:hover p {
@@ -760,8 +712,10 @@ section.group:hover .border-t {
     padding-bottom: 4rem;
   }
 
-  /* Ensure touch targets are at least 44px */
-  a, button {
+  /* Ensure inline-styled touch targets are at least 44px tall.
+     Skip block/flex-display links so card-style anchors keep stacking their children. */
+  a:not(.block):not([class*="flex"]),
+  button:not(.block):not([class*="flex"]) {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
