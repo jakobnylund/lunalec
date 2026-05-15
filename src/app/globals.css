@@ -482,6 +482,19 @@ section.group:hover .tech-label {
   color: #7a8ba8;
 }
 
+/* Native <option> elements ignore the parent <select>'s transparent bg and
+   need explicit colors — Chrome in particular renders them white-on-white
+   without this rule. */
+select option {
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+.light-mode select option {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
 /* Scrollbar */
 .light-mode ::-webkit-scrollbar-track {
   background: var(--background);

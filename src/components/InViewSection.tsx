@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState, ReactNode } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import DotField from "@/components/DotField";
 
 interface InViewSectionProps {
   children: ReactNode;
@@ -12,6 +13,8 @@ interface InViewSectionProps {
   id?: string;
   /** Suppress the static dot-grid background pattern (e.g. when using DotField) */
   noDotGrid?: boolean;
+  /** Suppress the animated molecular DotField background */
+  noDotField?: boolean;
 }
 
 /**
@@ -30,6 +33,7 @@ export default function InViewSection({
   hoverClassName = "group",
   id,
   noDotGrid = false,
+  noDotField = false,
 }: InViewSectionProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
@@ -78,6 +82,8 @@ export default function InViewSection({
       <section id={id} className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
         {/* Dot grid overlay */}
         {!noDotGrid && <div className="dot-grid absolute inset-0 z-0" />}
+        {/* Animated molecular dot field — desktop, dark mode only */}
+        {!noDotField && <DotField />}
         <div className="relative z-10">
           {children}
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/components/Button";
-import DotField from "@/components/DotField";
 import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
@@ -55,7 +54,6 @@ export default function TechnologyPage() {
 
       {/* What is LEC */}
       <InViewSection className="border-b-section" noDotGrid>
-        {!isLight && <DotField />}
         <div className="grid grid-cols-1 lg:grid-cols-3 relative">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">

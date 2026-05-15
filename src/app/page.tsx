@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/components/Button";
-import DotField from "@/components/DotField";
 import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
@@ -17,24 +16,47 @@ export default function Home() {
       <section className="min-h-[60dvh] flex flex-col justify-between border-b-section relative group/hero">
         {/* Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          {/* Mobile portrait crop */}
-          <Image
-            src={isLight ? "/hero-white.jpeg" : "/hero-black.jpeg"}
-            alt="Smart card with integrated LEC-powered logo glowing"
-            fill
-            sizes="100vw"
-            className="md:hidden object-cover object-center transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/hero:scale-[1.04]"
-            priority
-          />
-          {/* Desktop landscape crop */}
-          <Image
-            src={isLight ? "/hero-white.jpeg" : "/hero-black.jpeg"}
-            alt="Smart card with integrated LEC-powered logo glowing"
-            fill
-            sizes="100vw"
-            className="hidden md:block object-cover object-right transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/hero:scale-[1.04]"
-            priority
-          />
+          {isLight ? (
+            <>
+              {/* Default — light is off */}
+              <Image
+                src="/hero/bright.jpg"
+                alt="Smart card with the LunaLEC logo unlit on a bright surface"
+                fill
+                sizes="100vw"
+                className="object-cover object-center md:object-right"
+                priority
+              />
+              {/* On hover — light turns on */}
+              <Image
+                src="/hero/bright-on.jpg"
+                alt="Smart card with the LunaLEC logo glowing on a bright surface"
+                fill
+                sizes="100vw"
+                className="object-cover object-center md:object-right opacity-0 transition-opacity duration-100 ease-in group-hover/hero:opacity-100"
+              />
+            </>
+          ) : (
+            <>
+              {/* Default — light is off */}
+              <Image
+                src="/hero/off.jpg"
+                alt="Smart card with the LunaLEC logo unlit"
+                fill
+                sizes="100vw"
+                className="object-cover object-center md:object-right"
+                priority
+              />
+              {/* On hover — light turns on */}
+              <Image
+                src="/hero/on.jpg"
+                alt="Smart card with the LunaLEC logo glowing"
+                fill
+                sizes="100vw"
+                className="object-cover object-center md:object-right opacity-0 transition-opacity duration-100 ease-in group-hover/hero:opacity-100"
+              />
+            </>
+          )}
           {/* Gradient overlay for text readability */}
           {!isLight ? (
             <>
@@ -46,9 +68,9 @@ export default function Home() {
           ) : (
             <>
               {/* Light mode mobile: vertical white fade so the dark card doesn't crash the text */}
-              <div className="md:hidden absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/30 transition-opacity duration-500 group-hover/hero:opacity-60" />
-              {/* Light mode desktop: horizontal white fade from text side */}
-              <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent transition-opacity duration-500 group-hover/hero:opacity-50" />
+              <div className="md:hidden absolute inset-0 bg-[linear-gradient(170deg,rgba(255,255,255,0.9)_0%,rgba(255,255,255,0.55)_35%,rgba(255,255,255,0.15)_55%,transparent_75%)]" />
+              {/* Light mode desktop: angled white wash behind text, softens before reaching the card */}
+              <div className="hidden md:block absolute inset-0 bg-[linear-gradient(105deg,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.6)_25%,rgba(255,255,255,0.2)_45%,transparent_65%)]" />
             </>
           )}
         </div>
@@ -105,7 +127,6 @@ export default function Home() {
 
       {/* About LEC */}
       <InViewSection className="border-b-section" noDotGrid>
-        {!isLight && <DotField />}
         <div className="grid grid-cols-1 lg:grid-cols-3 relative">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
