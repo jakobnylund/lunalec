@@ -59,7 +59,6 @@ export default function InViewSection({
   if (!hasMounted) {
     return (
       <section id={id} className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
-        {!noDotGrid && <div className="dot-grid absolute inset-0 z-0" />}
         <div className="relative z-10">
           {children}
         </div>
@@ -80,8 +79,6 @@ export default function InViewSection({
   if (!isTouchDevice) {
     return (
       <section id={id} className={`transition-colors duration-300 ${hoverClassName} ${className} relative overflow-hidden`}>
-        {/* Dot grid overlay */}
-        {!noDotGrid && <div className="dot-grid absolute inset-0 z-0" />}
         {/* Animated molecular dot field — desktop, dark mode only */}
         {!noDotField && <DotField />}
         <div className="relative z-10">
