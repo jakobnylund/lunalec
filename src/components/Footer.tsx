@@ -86,9 +86,13 @@ export default function Footer() {
         <p className="text-xs text-[#555]">
           © {new Date().getFullYear()} LunaLEC AB. All rights reserved.
         </p>
-        <p className="text-xs text-[#555]">
-          Deep tech from the Arctic
-        </p>
+        <div className="flex items-center gap-4 text-xs text-[#555]">
+          <Link href="/privacy" className="hover:text-white transition-colors">
+            Privacy
+          </Link>
+          <span aria-hidden="true">·</span>
+          <span>Deep tech from the Arctic</span>
+        </div>
       </div>
     </footer>
   );
