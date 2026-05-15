@@ -16,7 +16,7 @@ const sections: Section[] = [
     body: (
       <>
         <p className="mb-4">
-          LunaLEC AB (org.nr. forthcoming) is the data controller for personal data
+          LunaLEC AB (org. no. 556894-6486) is the data controller for personal data
           processed on lunalec.com.
         </p>
         <address className="not-italic text-[#b0b0b0] leading-relaxed">
