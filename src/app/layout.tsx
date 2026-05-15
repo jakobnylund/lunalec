@@ -16,17 +16,60 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lunalec.com";
+
 export const metadata: Metadata = {
-  title: "LunaLEC — Printable Light Technology",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "LunaLEC — Printable Light Technology",
+    template: "%s — LunaLEC",
+  },
   description:
-    "LunaLEC develops Light-emitting Electrochemical Cells (LEC) that can be printed on any surface. Pioneering the future of sustainable, flexible lighting technology.",
+    "LunaLEC develops Light-emitting Electrochemical Cells (LECs) that can be printed on any surface. Pioneering the future of sustainable, flexible, customizable lighting.",
   keywords: [
     "LEC",
     "printable light",
     "light-emitting electrochemical cells",
+    "Lumifoil",
+    "smart cards",
+    "Authentic Light",
+    "anti-counterfeiting",
     "flexible displays",
     "sustainable lighting",
+    "Umeå",
   ],
+  authors: [{ name: "LunaLEC AB" }],
+  creator: "LunaLEC AB",
+  publisher: "LunaLEC AB",
+  applicationName: "LunaLEC",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "LunaLEC",
+    url: SITE_URL,
+    title: "LunaLEC — Printable Light Technology",
+    description:
+      "Next-generation printable light sources based on LEC technology. Customizable emission patterns in a thin and flexible form factor.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LunaLEC — Printable Light Technology",
+    description:
+      "Next-generation printable light sources based on LEC technology.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({
