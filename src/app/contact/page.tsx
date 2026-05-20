@@ -5,10 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import { useState } from "react";
 
-// Formspree form endpoint. The URL is public (exposed in the form action) so it
-// lives in source. Override via NEXT_PUBLIC_FORMSPREE_ENDPOINT if you ever swap forms.
-const FORMSPREE_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "https://formspree.io/f/mbdwbqjr";
+const CONTACT_ENDPOINT = "/api/contact";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,11 +22,7 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!FORMSPREE_ENDPOINT) {
-      setError("Form is not configured yet. Email info@lunalec.com directly while we get this sorted.");
-      return;
-    }
-    // Bots fill the hidden website field — drop silently.
+    // Bots fill the hidden website field — drop silently without sending.
     if (formData.website.trim().length > 0) {
       setSubmitted(true);
       return;
@@ -37,21 +30,16 @@ export default function ContactPage() {
     setError(null);
     setSubmitting(true);
     try {
-      const { website: _honeypot, ...payload } = formData;
-      void _honeypot;
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...payload,
-          _subject: `New contact form submission${payload.company ? ` — ${payload.company}` : ""}`,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
       if (!response.ok) {
-        throw new Error("Could not send your message. Please try again.");
+        const data = (await response.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(data?.error ?? "Could not send your message.");
       }
       setSubmitted(true);
     } catch (err) {
