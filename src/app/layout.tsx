@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ColorPicker from "@/components/ColorPicker";
+import SiteChrome from "@/components/SiteChrome";
 import Providers from "@/components/Providers";
 
 const geistSans = Geist({
@@ -40,10 +38,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#050505] text-white`}
       >
         <Providers>
-          <Header />
-          <main className="min-h-[100dvh] pt-24 lg:pt-32">{children}</main>
-          <Footer />
-          <ColorPicker />
+          <SiteChrome>{children}</SiteChrome>
         </Providers>
       </body>
     </html>
