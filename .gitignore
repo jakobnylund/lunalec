@@ -152,3 +152,7 @@ feedback/
 
 # Source / working photo set (originals; cropped/optimised versions live in /public)
 images/
+
+# Stray PDF test artifacts (e.g. business-card generator dev renders)
+/generated.pdf
+/*.pdf
