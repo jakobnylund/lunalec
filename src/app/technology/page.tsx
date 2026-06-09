@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/components/Button";
-import DotField from "@/components/DotField";
 import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import Link from "next/link";
@@ -12,14 +11,14 @@ export default function TechnologyPage() {
   const { isLight } = useTheme();
 
   return (
-    <div className="bg-[#050505]">
+    <div className="bg-[var(--background)]">
       {/* Hero */}
-      <section className="min-h-[60dvh] flex flex-col justify-center border-b-section relative group/hero overflow-hidden">
+      <section className="min-h-[55dvh] flex flex-col justify-center border-b-section relative group/hero overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src={isLight ? "/sheet-light.jpg" : "/lec/hero-tech.jpg"}
-            alt=""
+            src="/lunalec-tech.jpg"
+            alt="LunaLEC technology — printed LEC stack"
             fill
             sizes="100vw"
             className="object-cover"
@@ -46,8 +45,7 @@ export default function TechnologyPage() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-[#b0b0b0] text-lg max-w-md leading-relaxed">
-                A revolutionary approach to creating light that can be printed
-                onto virtually any surface.
+                The next revolution in lighting technology.
               </p>
             </FadeIn>
           </div>
@@ -56,7 +54,6 @@ export default function TechnologyPage() {
 
       {/* What is LEC */}
       <InViewSection className="border-b-section" noDotGrid>
-        {!isLight && <DotField />}
         <div className="grid grid-cols-1 lg:grid-cols-3 relative">
           {/* Index */}
           <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
@@ -75,27 +72,17 @@ export default function TechnologyPage() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
-                Current generation LEDs and OLEDs generate light through a p-n junction built up by precise layers of semiconductors controlled to nanometer accuracy. Achieving this level of molecular control requires energy- and cost-intensive manufacturing processes.
+                Current generation of LED and OLED generate light through a p-n junction built up by precise layers of semiconductors controlled to nanometer accuracy and achieving this level of molecular control requires energy and cost-intensive manufacturing processes.
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
-                The LEC (Light-emitting Electrochemical Cell) creates its light-emitting p-n junction structure in a different way. From a single layer consisting of a mix of carefully selected organic semiconductors and mobile ions, the LEC forms a p-n junction naturally through ion reorganization and electrochemical reactions while being powered.
+                The LEC (or Light-emitting Electrochemical Cell as the full technical name) creates its light-emitting pn-junction structure in a different way. From a single layer consisting of a mix of carefully selected organic semiconductors and mobile ions, the LEC forms a pn-junction naturally through ion reorganization and electrochemical reactions while being powered. This means that a similarly intricate pn-junction structure as in LEDs and OLEDs can be achieved while only having to manufacture a single active layer. Sticking to solution processable organic materials, we can also formulate inks that can be deposited by standard printing techniques, increasing customizability, reducing cost and offering a more energy- and environmentally friendly manufacturing.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
-                This means a similarly intricate p-n junction structure as in LEDs and OLEDs can be achieved while only having to manufacture a single active layer. Sticking to solution-processable organic materials, we formulate inks that can be deposited by standard printing techniques — increasing customizability, reducing cost, and offering a more energy- and environmentally friendly manufacturing process.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.4}>
-              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-6 max-w-2xl">
-                Our core knowledge and IP portfolio of LEC operation, material selection, ink formulation, and printing manufacturing allows us to develop this technology toward clear performance targets required by each product or application.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.5}>
               <p className="text-[#b0b0b0] text-lg leading-relaxed max-w-2xl">
-                This is the foundation of Lumifoil — our commercial product line that brings LEC technology to market.
+                Our core knowledge and IP-portfolio of LEC operation, material selection, ink formulation and printing manufacturing allows us to develop this technology towards clear performance targets required by each product or application.
               </p>
             </FadeIn>
           </div>
@@ -134,17 +121,15 @@ export default function TechnologyPage() {
             <div className="hidden md:block">
               {[
                 { label: "Manufacturing →", led: "Semiconductor fab", oled: "Vacuum deposition", lec: "Printing in ambient air" },
-                { label: "Form Factor →", led: "Rigid", oled: "Thin, rigid / flexible", lec: "Ultra-thin, flexible" },
+                { label: "Form Factor →", led: "Rigid", oled: "Thin, Rigid / Flexible", lec: "Ultra-thin, Flexible" },
                 { label: "Emission →", led: "Point source", oled: "Area emission", lec: "Area emission" },
                 { label: "Emission pattern →", led: "—", oled: "Expensive to customize", lec: "Easy to customize" },
-                { label: "Substrate →", led: "Rigid die, PCB", oled: "Glass, plastic", lec: "Paper, plastic, foil, glass, fabric" },
-                { label: "Voltage →", led: "2–4V DC", oled: "3–10V DC", lec: "3–5V DC/AC" },
+                { label: "Substrate →", led: "Die, PCB", oled: "Glass, Plastic", lec: "Plastic, Foil, Glass" },
                 { label: "Material Cost →", led: "Low", oled: "High", lec: "Very Low" },
                 { label: "Rare Earth →", led: "Yes", oled: "Some", lec: "None" },
-                { label: "Encapsulation →", led: "Moderate", oled: "Critical", lec: "Minimal" },
               ].map((row, i) => (
                 <FadeIn key={row.label} delay={i * 0.05}>
-                  <div className={`grid grid-cols-4 border-b border-[#1a1a1a] ${i % 2 === 0 ? "bg-[#0a0a0a]" : "bg-[#050505]"}`}>
+                  <div className={`grid grid-cols-4 border-b border-[#1a1a1a] ${i % 2 === 0 ? "bg-[#0a0a0a]" : "bg-[var(--background)]"}`}>
                     <div className="px-6 py-4 transition-all duration-300 group-hover/comparison:bg-[var(--accent)]/5">
                       <p className="text-base text-[#808080] transition-colors duration-300 group-hover/comparison:text-white/60">{row.label}</p>
                     </div>
@@ -165,17 +150,15 @@ export default function TechnologyPage() {
             <div className="md:hidden">
               {[
                 { label: "Manufacturing", led: "Semiconductor fab", oled: "Vacuum deposition", lec: "Printing in ambient air" },
-                { label: "Form Factor", led: "Rigid", oled: "Thin, rigid / flexible", lec: "Ultra-thin, flexible" },
+                { label: "Form Factor", led: "Rigid", oled: "Thin, Rigid / Flexible", lec: "Ultra-thin, Flexible" },
                 { label: "Emission", led: "Point source", oled: "Area emission", lec: "Area emission" },
                 { label: "Emission pattern", led: "—", oled: "Expensive to customize", lec: "Easy to customize" },
-                { label: "Substrate", led: "Rigid die, PCB", oled: "Glass, plastic", lec: "Paper, plastic, foil, glass, fabric" },
-                { label: "Voltage", led: "2–4V DC", oled: "3–10V DC", lec: "3–5V DC/AC" },
+                { label: "Substrate", led: "Die, PCB", oled: "Glass, Plastic", lec: "Plastic, Foil, Glass" },
                 { label: "Material Cost", led: "Low", oled: "High", lec: "Very Low" },
                 { label: "Rare Earth", led: "Yes", oled: "Some", lec: "None" },
-                { label: "Encapsulation", led: "Moderate", oled: "Critical", lec: "Minimal" },
               ].map((row, i) => (
                 <FadeIn key={row.label} delay={i * 0.05}>
-                  <div className={`border-b border-[#1a1a1a] ${i % 2 === 0 ? "bg-[#0a0a0a]" : "bg-[#050505]"}`}>
+                  <div className={`border-b border-[#1a1a1a] ${i % 2 === 0 ? "bg-[#0a0a0a]" : "bg-[var(--background)]"}`}>
                     <div className="px-6 py-3 border-b border-[#1a1a1a]">
                       <p className="tech-label">{row.label}</p>
                     </div>
@@ -216,12 +199,12 @@ export default function TechnologyPage() {
           <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 content-start">
             {[
               { value: "<250μm", label: "Thickness", sub: "Total device stack" },
-              { value: "3–5V", label: "Operation", sub: "DC, NFC, RFID compatible" },
+              { value: "DC Voltage", label: "Operation", sub: "Battery, NFC, RFID compatible" },
               { value: "White", label: "Emission", sub: "All colors available" },
               { value: "Print", label: "Manufacturing", sub: "Inkjet & screen printing" },
             ].map((spec, i) => (
               <FadeIn key={spec.label} delay={i * 0.08}>
-                <div className={`group/card h-full px-6 py-12 border-b border-[#1a1a1a] ${i % 2 === 1 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} ${i % 4 === 0 ? "md:border-l-0" : ""} hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300`}>
+                <div className={`group/card h-full px-6 py-12 border-b border-[#1a1a1a] ${i % 2 === 1 ? "border-l" : ""} ${i % 4 !== 0 ? "md:border-l" : ""} ${i % 4 === 0 ? "md:border-l-0" : ""} cell-glow`}>
                   <p className="mono text-3xl md:text-4xl text-[#253ff6] mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
                     {spec.value}
                   </p>
@@ -235,7 +218,7 @@ export default function TechnologyPage() {
       </InViewSection>
 
       {/* Spectrum divider */}
-      <section className="relative h-[55vh] md:h-[70vh] border-b-section overflow-hidden group/spectrum">
+      <section className="hero-overlay relative h-[55vh] md:h-[70vh] border-b-section overflow-hidden group/spectrum">
         <Image
           src="/lec/spectrum-bg.jpg"
           alt="LunaLEC team member in the lab"
@@ -282,11 +265,11 @@ export default function TechnologyPage() {
               },
               {
                 title: "Material Efficient",
-                desc: "Printing allows efficient material usage, greatly reducing material waste during manufacture.",
+                desc: "Printing allows efficient material usage, greatly reducing material waste during manufacturing.",
               },
             ].map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.1} className="h-full">
-                <div className={`group/card px-6 py-12 border-b h-full ${i > 0 ? "md:border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer`}>
+                <div className={`group/card px-6 py-12 border-b h-full ${i > 0 ? "md:border-l" : ""} border-[#1a1a1a] cell-glow cursor-pointer`}>
                   <p className="text-white mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">{item.title}</p>
                   <p className="text-base text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">{item.desc}</p>
                 </div>
@@ -340,63 +323,61 @@ export default function TechnologyPage() {
 
       {/* CTA */}
       <InViewSection>
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left */}
-          <div className="px-6 lg:px-16 py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {/* Left — content cell, matches index column width */}
+          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
             <FadeIn>
               <p className="tech-label mb-2">Get Started</p>
               <p className="section-title mb-8">Next Steps</p>
             </FadeIn>
             <FadeIn delay={0.1}>
-              <h2 className="text-3xl md:text-4xl text-white mb-8">
+              <h2 className="text-2xl md:text-3xl text-white mb-6">
                 Want to learn more about our technology?
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-[#b0b0b0] text-lg leading-relaxed mb-10 max-w-md">
+              <p className="text-[#b0b0b0] text-base leading-relaxed mb-8">
                 Our team is ready to discuss how LEC technology can enable your
                 next product innovation.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <div className="flex gap-4">
-                <Button href="/contact">Contact Us</Button>
-                <Button href="/#applications" variant="ghost">Applications →</Button>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/contact" size="sm">Contact Us</Button>
+                <Button href="/#applications" variant="ghost" size="sm">Applications →</Button>
               </div>
             </FadeIn>
           </div>
 
-          {/* Right — link grid matching site grammar */}
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            <FadeIn delay={0.15} className="h-full">
-              <Link
-                href="/#applications"
-                className="group/card block h-full px-6 lg:px-12 py-12 border-b sm:border-b-0 sm:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
-              >
-                <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Explore</p>
-                <p className="arrow-link text-white text-xl transition-colors duration-300 group-hover/card:!text-[#050505]">
-                  See Applications
-                </p>
-                <p className="text-sm text-[#808080] mt-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
-                  Smart cards, packaging, security, and more
-                </p>
-              </Link>
-            </FadeIn>
-            <FadeIn delay={0.25} className="h-full">
-              <Link
-                href="/contact#collaboration"
-                className="group/card block h-full px-6 lg:px-12 py-12 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300"
-              >
-                <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Partner</p>
-                <p className="arrow-link text-white text-xl transition-colors duration-300 group-hover/card:!text-[#050505]">
-                  Collaboration Options
-                </p>
-                <p className="text-sm text-[#808080] mt-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
-                  Licensing, joint development, OEM supply
-                </p>
-              </Link>
-            </FadeIn>
-          </div>
+          {/* Right — two equal link cells matching site grammar */}
+          <FadeIn delay={0.15} className="h-full">
+            <Link
+              href="/#applications"
+              className="group/card flex flex-col h-full px-6 lg:px-12 py-12 border-b lg:border-b-0 lg:border-r border-[#1a1a1a] cell-glow"
+            >
+              <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Explore</p>
+              <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
+                See Applications <span className="inline-block transition-transform duration-300 group-hover/card:translate-x-1">→</span>
+              </p>
+              <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">
+                Smart cards, packaging, security, and more
+              </p>
+            </Link>
+          </FadeIn>
+          <FadeIn delay={0.25} className="h-full">
+            <Link
+              href="/contact#collaboration"
+              className="group/card flex flex-col h-full px-6 lg:px-12 py-12 cell-glow"
+            >
+              <p className="tech-label mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Partner</p>
+              <p className="text-white text-xl mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">
+                Collaboration Options <span className="inline-block transition-transform duration-300 group-hover/card:translate-x-1">→</span>
+              </p>
+              <p className="text-sm text-[#808080] transition-colors duration-300 group-hover/card:!text-[#050505]">
+                Licensing, joint development, OEM supply
+              </p>
+            </Link>
+          </FadeIn>
         </div>
       </InViewSection>
     </div>

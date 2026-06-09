@@ -5,6 +5,8 @@ import FadeIn from "@/components/FadeIn";
 import InViewSection from "@/components/InViewSection";
 import { useState } from "react";
 
+const CONTACT_ENDPOINT = "/api/contact";
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,13 +14,39 @@ export default function ContactPage() {
     company: "",
     interest: "",
     message: "",
+    website: "", // honeypot
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+    // Bots fill the hidden website field — drop silently without sending.
+    if (formData.website.trim().length > 0) {
+      setSubmitted(true);
+      return;
+    }
+    setError(null);
+    setSubmitting(true);
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(data?.error ?? "Could not send your message.");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not send your message.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -31,9 +59,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#050505]">
+    <div className="bg-[var(--background)]">
       {/* Hero */}
-      <InViewSection className="min-h-[50dvh] flex flex-col justify-center border-b-section">
+      <InViewSection className="min-h-[55dvh] flex flex-col justify-center border-b-section">
         <div className="px-6 lg:px-16 py-24">
           <FadeIn>
             <p className="tech-label mb-8">Get in Touch</p>
@@ -58,7 +86,7 @@ export default function ContactPage() {
       <InViewSection className="border-b-section">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Form */}
-          <div className="px-6 lg:px-16 py-16 lg:py-24 border-b lg:border-b-0 lg:border-r border-[#1a1a1a]">
+          <div className="px-6 lg:px-16 py-16 lg:py-24">
             <FadeIn>
               <p className="tech-label mb-2">Reach Out</p>
               <p className="section-title mb-10">Send Us a Message</p>
@@ -90,7 +118,7 @@ export default function ContactPage() {
               </FadeIn>
             ) : (
               <FadeIn delay={0.2}>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 relative">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-base text-[#b0b0b0] mb-2">
@@ -148,7 +176,14 @@ export default function ContactPage() {
                       name="interest"
                       value={formData.interest}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-[#050505] border border-[#1a1a1a] text-white focus:outline-none focus:border-[#253ff6] focus:shadow-[0_0_25px_rgba(255,255,255,0.15),0_0_40px_rgba(37,63,246,0.2)] transition-all duration-300"
+                      className="w-full pl-4 pr-12 py-3 bg-transparent border border-[#1a1a1a] text-white focus:outline-none focus:border-[#253ff6] focus:shadow-[0_0_25px_rgba(255,255,255,0.15),0_0_40px_rgba(37,63,246,0.2)] transition-all duration-300 appearance-none cursor-pointer"
+                      style={{
+                        backgroundImage:
+                          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23b0b0b0' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E\")",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "right 1rem center",
+                        backgroundSize: "1.25rem",
+                      }}
                     >
                       <option value="">Select an option</option>
                       <option value="licensing">Technology Licensing</option>
@@ -177,14 +212,36 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button type="submit">Send Message</Button>
+                  {/* Honeypot — bots auto-fill this, real users never see it */}
+                  <div className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website">Website (leave empty)</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  {error && (
+                    <p className="text-sm" style={{ color: "var(--accent)" }}>
+                      {error}
+                    </p>
+                  )}
+
+                  <Button type="submit" disabled={submitting}>
+                    {submitting ? "Sending..." : "Send Message"}
+                  </Button>
                 </form>
               </FadeIn>
             )}
           </div>
 
           {/* Contact Info — full-cell grid matching site grammar */}
-          <div className="bg-[#0a0a0a] flex flex-col">
+          <div className="flex flex-col border-t lg:border-t-0 lg:border-l border-[#1a1a1a]">
             <div className="px-6 lg:px-16 pt-16 lg:pt-24 pb-10">
               <FadeIn>
                 <p className="tech-label mb-2">Contact Info</p>
@@ -192,11 +249,11 @@ export default function ContactPage() {
               </FadeIn>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-[#1a1a1a]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 border-y border-[#1a1a1a]">
               <FadeIn delay={0.1}>
                 <a
                   href="mailto:info@lunalec.com"
-                  className="group/card block px-6 lg:px-12 py-10 border-b sm:border-r border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full"
+                  className="group/card block px-6 lg:px-12 py-10 border-b sm:border-r border-[#1a1a1a] cell-glow h-full"
                 >
                   <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">Email</p>
                   <p className="text-[#253ff6] text-lg mb-2 transition-colors duration-300 group-hover/card:!text-[#050505]">info@lunalec.com</p>
@@ -205,19 +262,19 @@ export default function ContactPage() {
               </FadeIn>
 
               <FadeIn delay={0.15}>
-                <div className="group/card px-6 lg:px-12 py-10 border-b border-[#1a1a1a] h-full">
+                <div className="px-6 lg:px-12 py-10 border-b border-[#1a1a1a] h-full">
                   <p className="tech-label mb-3">Address</p>
                   <p className="text-[#b0b0b0] leading-relaxed">
                     LunaLEC AB<br />
-                    Linnaeus väg 8C<br />
-                    907 36 Umeå<br />
+                    Linnaeus väg 24<br />
+                    901 87 Umeå<br />
                     Sweden
                   </p>
                 </div>
               </FadeIn>
 
               <FadeIn delay={0.2}>
-                <div className="group/card px-6 lg:px-12 py-10 border-b sm:border-b-0 sm:border-r border-[#1a1a1a] h-full">
+                <div className="px-6 lg:px-12 py-10 border-b sm:border-b-0 sm:border-r border-[#1a1a1a] h-full">
                   <p className="tech-label mb-3">Hours</p>
                   <p className="text-[#b0b0b0] leading-relaxed">
                     Monday – Friday<br />
@@ -228,10 +285,10 @@ export default function ContactPage() {
 
               <FadeIn delay={0.25}>
                 <a
-                  href="https://linkedin.com/company/lunalec"
+                  href="https://se.linkedin.com/company/lunalec-ab"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/card block px-6 lg:px-12 py-10 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 h-full"
+                  className="group/card block px-6 lg:px-12 py-10 cell-glow h-full"
                 >
                   <p className="tech-label mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]/60">LinkedIn</p>
                   <p className="arrow-link text-[#253ff6] text-lg transition-colors duration-300 group-hover/card:!text-[#050505]">
@@ -289,7 +346,7 @@ export default function ContactPage() {
               },
             ].map((model, i) => (
               <FadeIn key={model.title} delay={i * 0.08}>
-                <div className={`group/card px-6 lg:px-10 py-10 border-b ${i % 2 === 1 ? "md:border-l" : ""} border-[#1a1a1a] hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer h-full flex flex-col`}>
+                <div className={`group/card px-6 lg:px-10 py-10 border-b ${i % 2 === 1 ? "md:border-l" : ""} border-[#1a1a1a] cell-glow cursor-pointer h-full flex flex-col`}>
                   <p className="text-white text-xl mb-1 transition-colors duration-300 group-hover/card:!text-[#050505]">{model.title}</p>
                   <p className="text-base text-[#b0b0b0] mb-4 transition-colors duration-300 group-hover/card:!text-[#050505]">{model.desc}</p>
                   <p className="text-base text-[#b0b0b0] leading-relaxed mb-6 transition-colors duration-300 group-hover/card:!text-[#050505]">{model.details}</p>
@@ -339,7 +396,7 @@ export default function ContactPage() {
               },
             ].map((faq, i) => (
               <FadeIn key={faq.q} delay={i * 0.08}>
-                <div className="group/card px-6 lg:px-16 py-10 border-b border-[#1a1a1a] last:border-b-0 hover:bg-white hover:shadow-[inset_0_0_100px_rgba(255,255,255,1),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(37,63,246,0.3)] transition-all duration-300 cursor-pointer">
+                <div className="group/card px-6 lg:px-16 py-10 border-b border-[#1a1a1a] last:border-b-0 cell-glow cursor-pointer">
                   <p className="text-white text-lg mb-3 transition-colors duration-300 group-hover/card:!text-[#050505]">{faq.q}</p>
                   <p className="text-base text-[#b0b0b0] leading-relaxed transition-colors duration-300 group-hover/card:!text-[#050505]">{faq.a}</p>
                 </div>

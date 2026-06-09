@@ -74,12 +74,24 @@ export default function ColorPicker() {
     return interpolateColor(pos);
   };
 
+  // Pick a readable foreground for the given hex (white on dark, near-black on light)
+  const foregroundFor = (hex: string) => {
+    const r = parseInt(hex.slice(1, 3), 16) / 255;
+    const g = parseInt(hex.slice(3, 5), 16) / 255;
+    const b = parseInt(hex.slice(5, 7), 16) / 255;
+    // Linearize then weight by ITU-R BT.709
+    const lin = (c: number) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+    const luminance = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+    return luminance < 0.55 ? "#ffffff" : "#050505";
+  };
+
   // Apply color to CSS custom property (only after initialization)
   useEffect(() => {
     if (position === null || !isInitialized) return;
 
     const color = getHexFromPosition(position);
     document.documentElement.style.setProperty('--accent', color);
+    document.documentElement.style.setProperty('--accent-foreground', foregroundFor(color));
 
     // Store in localStorage
     localStorage.setItem('accentColor', color);
@@ -95,9 +107,11 @@ export default function ColorPicker() {
       // Apply saved color immediately
       const color = getHexFromPosition(savedPosition);
       document.documentElement.style.setProperty('--accent', color);
+      document.documentElement.style.setProperty('--accent-foreground', foregroundFor(color));
     } else {
       // Use default position, CSS already has default color
       setPosition(DEFAULT_POSITION);
+      document.documentElement.style.setProperty('--accent-foreground', foregroundFor(DEFAULT_COLOR));
     }
     setIsInitialized(true);
   }, []);
@@ -156,13 +170,34 @@ export default function ColorPicker() {
   const currentColor = getColorFromPosition(position ?? DEFAULT_POSITION);
 
   return (
-    <div className="bg-[#050505]">
+    <div className="bg-[var(--background)]">
       {/* Spectrum bar - full width */}
       <div
         ref={barRef}
-        className="relative h-16 cursor-crosshair select-none"
+        role="slider"
+        tabIndex={0}
+        aria-label="Choose your light color"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(position ?? DEFAULT_POSITION)}
+        className="relative h-16 cursor-ew-resize select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+            e.preventDefault();
+            setPosition((p) => Math.max(0, (p ?? DEFAULT_POSITION) - (e.shiftKey ? 10 : 2)));
+          } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+            e.preventDefault();
+            setPosition((p) => Math.min(100, (p ?? DEFAULT_POSITION) + (e.shiftKey ? 10 : 2)));
+          } else if (e.key === "Home") {
+            e.preventDefault();
+            setPosition(0);
+          } else if (e.key === "End") {
+            e.preventDefault();
+            setPosition(100);
+          }
+        }}
         style={{
           background: `linear-gradient(to right,
             #7f00ff 0%,
@@ -199,6 +234,15 @@ export default function ColorPicker() {
       <div className="px-6 lg:px-16 py-12 border-t border-[#1a1a1a]">
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
+            <p className="tech-label mb-4">The Breakthrough</p>
+            <h3 className="text-2xl text-white mb-4">
+              White Light Changes Everything
+            </h3>
+            <p className="text-[#b0b0b0] leading-relaxed">
+              The real breakthrough is <span className="text-white font-medium">white light</span>. Achieving efficient, stable white emission from a printable light-source, all from a surface thinner than a sheet of paper, unlocks applications that were previously impossible.
+            </p>
+          </div>
+          <div>
             <p className="tech-label mb-4">The Full Spectrum</p>
             <h3
               className="text-2xl mb-4 transition-colors duration-300"
@@ -207,22 +251,7 @@ export default function ColorPicker() {
               Any Color You Can Imagine
             </h3>
             <p className="text-[#b0b0b0] leading-relaxed">
-              From white light, LEC technology can produce any color across the entire visible spectrum.
-              Red, green, blue, and everything in between — our materials can be tuned to emit any wavelength you need.
-            </p>
-          </div>
-          <div>
-            <p className="tech-label mb-4">The Breakthrough</p>
-            <h3 className="text-2xl text-white mb-4">
-              White Light Changes Everything
-            </h3>
-            <p className="text-[#b0b0b0] leading-relaxed mb-4">
-              While colored light is impressive, the real breakthrough is
-              <span className="text-white font-medium"> white light</span>.
-              Achieving efficient, stable white emission from a printable light source — all from a surface thinner than a sheet of paper — unlocks applications that were previously impossible.
-            </p>
-            <p className="text-[#b0b0b0] leading-relaxed">
-              General illumination. Reading lights. Display backlights.
+              From white light the LEC technology can produce any color across the entire visible spectrum. Red, green, blue, and everything in between — our materials can be tuned to emit any color you need.
             </p>
           </div>
         </div>

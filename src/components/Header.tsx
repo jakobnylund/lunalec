@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import LightSwitch from "@/components/LightSwitch";
 
 const navigation = [
   { name: "Home", href: "/", index: "01" },
@@ -20,8 +21,8 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/95 backdrop-blur-sm border-b-section">
-      <nav className="grid grid-cols-3 items-stretch h-24 lg:h-32 relative z-10">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/95 backdrop-blur-sm border-b-section">
+      <nav className="grid grid-cols-[6rem_1fr] lg:grid-cols-3 items-stretch h-24 lg:h-32 relative z-10">
         {/* Logo cell — left 1/3, padding matches page index column */}
         <Link
           href="/"
@@ -36,8 +37,8 @@ export default function Header() {
           />
         </Link>
 
-        {/* Desktop Navigation — right 2/3 split into 4 equal cells */}
-        <div className="hidden md:grid col-span-2 grid-cols-4 items-stretch">
+        {/* Desktop Navigation — 4 equal nav links + a dedicated light-switch cell */}
+        <div className="hidden md:flex col-span-2 items-stretch">
           {navigation.map((item, i) => {
             const active = isActive(pathname, item.href);
             return (
@@ -45,7 +46,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative flex flex-col justify-center px-6 lg:px-8 ${
+                className={`relative flex-1 flex flex-col justify-center px-6 lg:px-8 ${
                   i < navigation.length - 1 ? "border-r border-[#1a1a1a]" : ""
                 } ${
                   active
@@ -64,27 +65,35 @@ export default function Header() {
               </Link>
             );
           })}
+          {/* Light switch cell — separated from nav by its own border */}
+          <div className="flex items-center justify-center px-5 lg:px-6 border-l border-[#1a1a1a]">
+            <LightSwitch />
+          </div>
         </div>
 
-        {/* Mobile Menu Button — fills right 2/3 on mobile */}
-        <button
-          type="button"
-          className="md:hidden col-span-2 flex items-center justify-end px-6 text-[#b0b0b0] hover:text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
+        {/* Mobile right zone — light switch + menu button */}
+        <div className="md:hidden flex items-center justify-end gap-2 pr-6">
+          <LightSwitch />
+          <button
+            type="button"
+            className="flex items-center justify-center w-10 h-10 text-[#b0b0b0] hover:text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
       </nav>
+
 
       {/* Mobile Menu — full-width section cells matching page grid */}
       {mobileMenuOpen && (
